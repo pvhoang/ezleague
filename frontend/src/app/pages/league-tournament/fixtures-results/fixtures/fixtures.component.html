@@ -1,0 +1,128 @@
+<div *ngIf="hasMatches; else noMatches">
+  <ng-container *ngFor="let tours of matches | keyvalue">
+    <div class="pt-0 collapse-icon" [id]="tours.key">
+      <ngb-accordion #acc="ngbAccordion" [activeIds]="activeIds" [destroyOnHide]="false">
+        <ng-container *ngFor="let tours_date of tours.value | keyvalue;let id = index">
+          <ngb-panel id="panel-{{tours.key.split('-')[1]}}-{{id}}">
+            <ng-template ngbPanelTitle>
+              <div class="d-flex">
+                <span class="lead collapse-title align-self-center">
+                  {{ tours_date?.key ? (tours_date.key |date : 'YYYY-MM-dd') : 'TBD' }}
+                </span>
+                <span *ngIf="!tours_date?.key" class="ml-1 badge badge-sm badge-dark">{{
+                  lengtMatchInDate(tours_date.value)}}</span>
+              </div>
+            </ng-template>
+            <ng-template ngbPanelContent>
+              <div class="table-container" *ngFor="let type of tours_date.value | keyvalue">
+                <h5 *ngIf="type.key != AppConfig.TOURNAMENT_TYPES.league">
+                  {{ type.key | translate }} {{ 'Stage' | translate }}
+                </h5>
+
+                <ng-container *ngFor="let groups of type.value | keyvalue">
+
+                  <table class="table table-fixtures">
+                    <span *ngIf="type.key != AppConfig.TOURNAMENT_TYPES.league">
+                      {{ groups.key }}
+                    </span>
+                    <tbody>
+                      <ng-container *ngFor="
+                        let item of groups.value
+                          | filter : teamFilter : '' : true
+                      ">
+                        <ng-container>
+                          <tr (click)="onSelectMatch(item)">
+                            <td class="text-right pl-0 pr-0 td-team">
+                              <span class="team-name">
+                                {{item.home_team ? item.home_team : 'TBD'}}
+                              </span>
+                              <img class="avatar avatar-sm ml-ava w-25" style="max-width: 50px" [src]="
+                                item.club_home_team_logo
+                                  ? item.club_home_team_logo
+                                  : coreConfig.app.appLogoImage
+                              " alt="avatar" />
+                            </td>
+                            <td class="text-center pl-2 pr-2" style="width: 130px">
+                              <div class="row justify-content-center">
+                                <div class="col-auto">
+                                  <div class="row justify-content-center d-block d-md-none" style="font-size: 10px">
+                                    <span *ngIf="item.start_time">
+                                      {{ item.start_time | date : 'HH:mm' }} -
+                                      {{ item.end_time | date : 'HH:mm' }}
+                                    </span>
+                                    {{ item.start_time ? '' : 'TBD' }}
+                                  </div>
+                                  <div class="row justify-content-center">
+                                    <div class="col-12 p-0 h4">
+                                      <span class="badge badge-primary" *ngIf="!item.status">
+                                        {{ item.home_score }} -
+                                        {{ item.away_score }}
+                                      </span>
+                                      <span class="badge badge-danger" *ngIf="item.status">
+                                        {{ item.status }}
+                                      </span>
+                                    </div>
+                                    <div class="col-12 p-0" *ngIf="item.home_penalty">
+                                      <span class="h6">
+                                        {{ item.home_penalty }} -
+                                        {{ item.away_penalty }}
+                                      </span>
+                                    </div>
+                                  </div>
+                                  <div class="row justify-content-center d-block d-md-none" style="font-size: 10px">
+                                    {{ item.location ? item.location : 'TBD' }}
+                                  </div>
+                                </div>
+                              </div>
+                            </td>
+                            <td class="text-left pl-0 pr-0 td-team">
+                              <img class="avatar avatar-sm mr-ava w-25" [src]="
+                                item.club_away_team_logo
+                                  ? item.club_away_team_logo
+                                  : coreConfig.app.appLogoImage
+                              " style="max-width: 50px" alt="avatar" />
+                              <span class="team-name">
+                                {{ item.away_team ? item.away_team : 'TBD' }}
+                              </span>
+                            </td>
+                            <td class="d-none d-md-table-cell pl-1 pr-1">
+                              <span *ngIf="
+                                type.key != AppConfig.TOURNAMENT_TYPES.league
+                              ">{{ item.round_name }}</span>
+                              <i class="fa-regular fa-clock pr-25 ml-1"></i>
+                              <span *ngIf="item.start_time">
+                                {{ item.start_time | date : 'HH:mm' }} -
+                                {{ item.end_time | date : 'HH:mm' }}
+                              </span>
+                              {{ item.start_time ? '' : 'TBD' }}
+                            </td>
+                            <td class="d-none d-md-table-cell pl-1 pr-1" style="width: 230px">
+                              <i class="fa-regular fa-location-dot pr-25"></i>
+                              {{ item.location ? item.location : 'TBD' }}
+                            </td>
+
+                            <td class="p-0" style="width: 30px">
+                              <i class="fa-solid fa-chevron-right"></i>
+                            </td>
+                          </tr>
+                        </ng-container>
+                      </ng-container>
+                    </tbody>
+                  </table>
+                </ng-container>
+              </div>
+            </ng-template>
+          </ngb-panel>
+        </ng-container>
+      </ngb-accordion>
+    </div>
+  </ng-container>
+</div>
+
+<ng-template #noMatches>
+  <div class="text-center">
+    <h4 class="text-muted">
+      {{ type == 'fixtures'?'No upcoming fixture':'No result' | translate }}
+    </h4>
+  </div>
+</ng-template>

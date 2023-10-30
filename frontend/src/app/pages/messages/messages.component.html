@@ -1,0 +1,45 @@
+<div class="content-wrapper container-xxl p-0">
+    <div class="content-body">
+        <!-- content-header component -->
+        <app-content-header [contentHeader]="contentHeader"></app-content-header>
+        <div id="messages" class="card">
+            <div class="row">
+                <div class="col-6 pt-2 pb-2">
+                    <ng-select class="ml-2" [clearable]="false" [(ngModel)]="season_id"
+                        (change)="onSeasonChange($event)">
+                        <ng-option *ngFor="let item of seasons" [value]="item.id">
+                            {{item.name}}
+                        </ng-option>
+                    </ng-select>
+                </div>
+            </div>
+
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table row-border hover">
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="login-form">
+
+    <!-- Modal -->
+    <ng-template #modalForm let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel1">{{'Send Message' | translate}}</h4>
+            <button type="button" class="close" (click)="modal.close('Cross click')" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="modal-body" tabindex="0" ngbAutofocus>
+                <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" rippleEffect>
+                    Submit
+                </button>
+            </div>
+        </form>
+    </ng-template>
+    <!-- / Modal -->
+</div>

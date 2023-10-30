@@ -1,0 +1,122 @@
+<div class="content-wrapper container-xxl p-0" style="overflow-x: hidden;">
+    <div class="content-body">
+        <!-- content-header component -->
+        <app-content-header [contentHeader]="contentHeader"></app-content-header>
+
+        <!-- Upcoming matches -->
+        <div class="upcomming-match">
+            <div class="header-tag" style="font-size: 20px;">{{'Upcoming matches'|translate}}</div>
+            <div class="container-fluid">
+                <div class="row flex-nowrap overflow-auto">
+                    <div [ngClass]="{'col': !isMobile, 'col-10': isMobile}" *ngFor="let item of upcomingMatches">
+                        <div class="card">
+                            <div class="text-center font-weight-bold">
+                                {{item.tournament?.name}}
+                            </div>
+                            <div class="mt-1">
+                                <div class="row">
+                                    <div class="col text-center">
+                                        <img [src]="item.home_team?.club?.logo" alt="" srcset="" width="50px"> <br>
+                                        {{item.home_team?.name}}
+                                    </div>
+                                    <div class="col text-center"
+                                        style="font-size: 12px; white-space: nowrap; vertical-align: middle;">
+                                        {{item.start_time | date:'dd MMM yyyy'}} <br>
+                                        {{item.start_time | date:'HH:mm'}} - {{item.end_time | date:'HH:mm'}}
+                                    </div>
+                                    <div class="col text-center">
+                                        <img [src]="item.away_team?.club?.logo" alt="" srcset="" width="50px"> <br>
+                                        {{item.away_team?.name}}
+                                    </div>
+                                </div>
+                                <hr>
+                                <button class="btn btn-primary btn-block btn-sm" (click)="showBroadCastModal(item.id)">
+                                    <i class="fa-regular fa-signal-stream"></i>
+                                    {{'Go Live' | translate}}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ng-template #noUpcomingMatches>
+                <div class="text-start">
+                    <h6>No upcoming matches</h6>
+                </div>
+            </ng-template>
+        </div>
+
+        <!-- Live matches -->
+        <div class="mt-2">
+            <div class="title">
+                <h3 class="font-weight-bolder">{{'Live matches'|translate }}</h3>
+            </div>
+            <div class="row" *ngIf="liveMatches.length > 0; else noLiveMatches">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of liveMatches">
+                    <div class="card border border-primary p-0" (click)="goWatchLive(item.broadcast_id,item.id)">
+                        <!-- <div class="live-info">
+                            <badge-live></badge-live>
+                            <span class="badge badge-secondary align-top">
+                                <img src="assets/images/clubs/eye.png" alt="" srcset="">
+                                8.1K
+                            </span>
+                        </div> -->
+
+                        <div class="live-detail">
+                            <div class="league-name">
+                                {{item.tournament?.name}}
+                            </div>
+                            <div class="team-versus">
+                                {{item.home_team?.name}} <span class="badge badge-primary">{{item.home_score}}</span> -
+                                <span class="badge badge-primary">{{item.away_score}}</span> {{item.away_team?.name}}
+                            </div>
+                        </div>
+
+                        <img src="assets/images/streaming/match-background.jpg" alt="" sizes="" srcset="">
+                    </div>
+                </div>
+            </div>
+            <ng-template #noLiveMatches>
+                <div class="text-start">
+                    <h6>{{'No live matches'|translate}}</h6>
+                </div>
+            </ng-template>
+        </div>
+
+        <!-- Finished matches -->
+        <div class="mt-2">
+            <div class="title">
+                <h3 class="font-weight-bolder">{{'Finished matches'|translate}}</h3>
+            </div>
+            <div class="row" *ngIf="finishedMatches.length > 0; else noFinishedMatches">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let item of finishedMatches">
+                    <div class="card border border-primary p-0" (click)="goWatchLive(item.broadcast_id,item.id)">
+                        <!-- <div class="live-info">
+                            <span class="badge badge-secondary align-top">
+                                <img src="assets/images/clubs/eye.png" alt="" srcset="">
+                                8.1K
+                            </span>
+                        </div> -->
+
+                        <div class="live-detail">
+                            <div class="league-name">
+                                {{item.tournament?.name}}
+                            </div>
+                            <div class="team-versus">
+                                {{item.home_team?.name}} <span class="badge badge-primary">{{item.home_score}}</span> -
+                                <span class="badge badge-primary">{{item.away_score}}</span> {{item.away_team?.name}}
+                            </div>
+                        </div>
+
+                        <img src="assets/images/streaming/match-background.jpg" alt="" sizes="" srcset="">
+                    </div>
+                </div>
+            </div>
+            <ng-template #noFinishedMatches>
+                <div class="text-start">
+                    <h6>{{'No finished matches'|translate}}</h6>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>

@@ -1,7 +1,5 @@
 {
-  "name": "myApp",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular-standalone"
+  "name": "ezleague",
+  "integrations": {},
+  "type": "angular"
 }

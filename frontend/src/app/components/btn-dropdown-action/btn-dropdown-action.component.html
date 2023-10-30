@@ -1,0 +1,24 @@
+<div  [ngClass]="class">
+    <ng-container *ngFor="let action of actions">
+        <div class="col-auto p-0 m-0" ngbDropdown container="body" *ngIf="action.type=='collection'">
+            <button type="button" class="btn hide-arrow p-0 text-primary" [style]="btnStyle"  ngbDropdownToggle data-toggle="dropdown"
+                (click)="onClick($event)">
+                <i class="fa-regular fa-ellipsis-vertical"></i>
+            </button>
+            <div ngbDropdownMenu>
+                <ng-container *ngFor="let button of action.buttons">
+                    <a ngbDropdownItem (click)="button.onClick(data)" [style]="btnStyle">
+                        <i *ngIf="button.icon" [ngClass]="button.icon" class="mr-50"></i>
+                        <span>{{button.label | translate }}</span>
+                    </a>
+                </ng-container>
+            </div>
+        </div>
+        <div class="col-auto p-0 m-0" *ngIf="action.type!='collection'">
+            <button type="button" class="btn hide-arrow p-0" [style]="btnStyle" (click)="action.onClick(data)">
+                <i *ngIf="action.icon"  [ngClass]="action.icon" class="mr-50 text-primary"></i>
+                <!-- <span>{{action.label | translate }}</span> -->
+            </button>
+        </div>
+    </ng-container>
+</div>

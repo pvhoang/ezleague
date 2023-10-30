@@ -1,0 +1,22 @@
+<div class="modal-header bg-white">
+  <button type="button" class="close" aria-label="Close" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form [formGroup]="form" (ngSubmit)="onSubmit(model)">
+  <div class="text-center">
+    <img src="assets/images/alerts/update_score.png" style="width: 80%; max-width: 250px;" alt="" />
+    <h4 class="modal-title" id="label_updatescore">
+      {{ 'Update Score' | translate }}
+    </h4>
+  </div>
+  <div class="modal-body" tabindex="0" ngbAutofocus>
+    <h3>{{ 'Score' | translate }}</h3>
+    <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary" rippleEffect>
+      {{ 'Save' | translate }}
+    </button>
+  </div>
+</form>

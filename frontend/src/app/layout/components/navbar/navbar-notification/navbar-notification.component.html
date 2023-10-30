@@ -1,0 +1,139 @@
+<li ngbDropdown class="nav-item dropdown-notification mr-25">
+  <a class="nav-link" ngbDropdownToggle id="navbarNotificationDropdown">
+    <i class="ficon" data-feather="bell"> </i>
+    <span class="badge badge-pill badge-danger badge-up">
+      {{ notifications.unread }}
+    </span>
+  </a>
+  <ul ngbDropdownMenu aria-labelledby="navbarNotificationDropdown"
+    class="dropdown-menu dropdown-menu-media dropdown-menu-right">
+    <!-- Notifications header -->
+    <li class="dropdown-menu-header">
+      <div class="dropdown-header d-flex">
+        <h4 class="notification-title mb-0 mr-auto">{{'Notifications'|translate}}</h4>
+        <button type="button" (click)="maskAllAsRead()" class="btn btn-flat-secondary p-25 text-dark">
+          {{'Mark all as read'|translate}} <i class="fa-duotone fa-check-double"></i>
+        </button>
+        <!-- <div class="badge badge-pill badge-light-primary">
+          {{ notifications.unread }} New
+        </div> -->
+      </div>
+    </li>
+    <!--/ Notifications header -->
+
+    <!-- Notifications content -->
+    <li class="scrollable-container media-list" [perfectScrollbar]>
+      <a class="d-flex" (click)="modalOpen(message)" *ngFor="let message of notifications.messages">
+        <div class="media d-flex align-items-start">
+          <div class="media-left">
+            <div class="avatar">
+              <img src="assets/images/ico/icon-72x72.png" alt="avatar" width="32" height="32" />
+            </div>
+          </div>
+          <div class="media-body">
+            <div class="row p-0">
+              <div class="col-11 pl-1 p-0">
+                <p class="media-heading mb-0" [innerHTML]="message.message?.title">
+                </p>
+
+                <small class="text-muted">
+                  {{'From'|translate}}: {{message?.message?.send_by?.first_name}}
+                  {{message?.message?.send_by?.last_name}}({{message?.message?.send_by?.email}})
+                </small>
+              </div>
+              <div class="col-1 p-0">
+                <i *ngIf="!message.read" class="fa-sharp fa-solid fa-circle fa-2xs" style="color: #50c9f2;"></i>
+              </div>
+            </div>
+            <small
+              innerHTML="{{((message.message?.content | striphtml).length>150)? (message.message?.content | striphtml | slice:0:150)+'...': (message.message?.content| striphtml) }}"></small>
+            <br>
+            <div class="row ml-0">
+              <div class="col p-0">
+                <small *ngIf="message.message?.attachments">
+                  {{'Attachments'|translate}}: {{message.message?.attachments.length}}
+                </small>
+              </div>
+              <div class="col pr-1">
+                <small class="text-muted float-right">
+                  {{message.message?.created_at |date:'yyyy-MM-dd hh:mm'}}
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+      <!-- <div class="media d-flex align-items-center">
+        <h6 class="font-weight-bolder mr-auto mb-0">System Notifications</h6>
+        <div class="custom-control custom-control-primary custom-switch">
+          <input class="custom-control-input" id="systemNotification" type="checkbox"
+            [checked]="notifications.system" />
+          <label class="custom-control-label" for="systemNotification"></label>
+        </div>
+      </div>
+      <a class="d-flex" href="javascript:void(0)" *ngFor="let systemMessage of notifications.systemMessages">
+        <div class="media d-flex align-items-start">
+          <div class="media-left">
+            <div class="avatar" [ngClass]="{
+                'bg-light-danger': systemMessage.icon === 'x',
+                'bg-light-success': systemMessage.icon === 'check',
+                'bg-light-warning': systemMessage.icon === 'alert-triangle'
+              }">
+              <div class="avatar-content"><i class="avatar-icon" [data-feather]="systemMessage.icon"></i></div>
+            </div>
+          </div>
+          <div class="media-body">
+            <p class="media-heading" [innerHTML]="systemMessage.heading"></p>
+            <small class="notification-text">{{ systemMessage.text }}</small>
+          </div>
+        </div>
+      </a> -->
+    </li>
+    <!--/ Notifications content -->
+
+    <!-- Notifications footer -->
+    <li class="dropdown-menu-footer">
+      <a class="btn btn-primary btn-block" [routerLink]="['/messages/all-notifications']"
+        routerLinkActive="router-link-active">{{'Read all notifications'|translate}}</a>
+    </li>
+    <!--/ Notifications footer -->
+  </ul>
+</li>
+
+
+<!-- Modal -->
+<ng-template #modalRef let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="myModalLabel1">{{selectedMessage.message?.title}}</h4>
+    <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" tabindex="0" ngbAutofocus>
+    <small class="text-muted">{{selectedMessage.message?.created_at | date:'yyyy-MM-dd hh:mm' }}</small>
+    <div innerHTML="{{ selectedMessage.message?.content | striphtml }}">
+    </div>
+  </div>
+
+  <div class="modal-footer justify-content-start" *ngIf="selectedMessage.message?.attachments">
+    <div class="card attachment" *ngFor="let item of selectedMessage.message?.attachments">
+      <div class="card-body p-50">
+        <h6>
+          {{(item.display_name.length>50)? (item.display_name | slice:0:50)+'...': item.display_name }}
+        </h6>
+        <div class="row">
+          <div class="col">
+            <p class="text-muted">{{item.size/ 1024 / 1024 | number: '.2'}}MB</p>
+          </div>
+          <div class="col">
+            <a target="_blank" class="btn btn-flat-secondary p-50 float-right" [href]="item.web_path"
+              [download]="item.display_name">
+              <i class="fa-duotone fa-download"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,19 @@
+<div class="form-group">
+    <label for="datepicker">{{props.label? props.label:''}}</label>
+    <div class="input-group">
+        <input id="datepicker" [(ngModel)]="dtPicker" [formlyAttributes]="field" class="form-control"
+            [disabled]="props.disabled?props.disabled:false" placeholder="yyyy-mm-dd" ngbDatepicker
+            #datetime="ngbDatepicker" (dateSelect)="onDateSelect($event)"
+            [maxDate]="props.maxDate? props.maxDate:undefined" [minDate]="props.minDate? props.minDate:undefined"
+            (change)="onChanges($event)" [ngClass]="{ 'is-invalid':(formControl.touched && formControl.errors) || submitted }"
+            (blur)="onBlur($event)">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary feather icon-calendar" (click)="datetime.toggle()" type="button"
+                rippleEffect></button>
+        </div>
+    </div>
+
+    <div class="invalid-feedback ng-star-inserted" style="display: block;" *ngIf="(formControl.touched && formControl.errors) || submitted">
+        <formly-validation-message [field]="field"></formly-validation-message>
+    </div>
+</div>

@@ -1,0 +1,223 @@
+// ================================================================================================
+//  File Name: bootstrap-extended.scss
+//  Description: List of modified Bootstrap files. This is an actual copy of bootstrap.scss
+//                excluding files that have not been modified.
+//  ----------------------------------------------------------------------------------------------
+//  Item Name: Vuexy - Vuejs, React, Angular, HTML & Laravel Admin Dashboard Template
+//  Author: PIXINVENT
+//  Author URL: http://www.themeforest.net/user/pixinvent
+// ================================================================================================
+
+@import 'bootstrap-extended/include'; // Bootstrap includes
+@import 'components/include'; // Components includes
+
+// Custom template mixins
+@import 'core/mixins/alert'; // Template custom mixins
+
+// Core CSS
+@import 'bootstrap-extended/reboot';
+@import 'bootstrap-extended/helper';
+@import 'bootstrap-extended/type';
+@import 'bootstrap-extended/code';
+@import 'bootstrap-extended/tables';
+@import 'bootstrap-extended/forms';
+@import 'bootstrap-extended/buttons';
+@import 'bootstrap-extended/button-group';
+
+// Components
+@import 'bootstrap-extended/dropdown';
+@import 'bootstrap-extended/navbar';
+@import 'bootstrap-extended/card';
+@import 'bootstrap-extended/breadcrumb';
+@import 'bootstrap-extended/badge';
+@import 'bootstrap-extended/nav';
+@import 'bootstrap-extended/alert';
+@import 'bootstrap-extended/media';
+@import 'bootstrap-extended/progress';
+@import 'bootstrap-extended/list-group';
+@import 'bootstrap-extended/toast';
+@import 'bootstrap-extended/collapse';
+@import 'bootstrap-extended/pagination';
+
+// Components w/ JavaScript
+@import 'bootstrap-extended/modal';
+@import 'bootstrap-extended/popover';
+
+// Utility classes
+@import 'bootstrap-extended/utilities';
+
+.form-check {
+    display: block;
+    min-height: 1.378125rem;
+    padding-left: 1.7em;
+    margin-bottom: 0.125rem;
+  }
+  .form-check .form-check-input {
+    float: left;
+    margin-left: -1.7em;
+  }
+  
+  .form-check-reverse {
+    padding-right: 1.7em;
+    padding-left: 0;
+    text-align: right;
+  }
+  .form-check-reverse .form-check-input {
+    float: right;
+    margin-right: -1.7em;
+    margin-left: 0;
+  }
+  
+  .form-check-input {
+    width: 1.2em;
+    height: 1.2em;
+    margin-top: 0.135em;
+    vertical-align: top;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    border: 1px solid #dbdade;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+  }
+  .form-check-input[type=checkbox] {
+    border-radius: 0.25em;
+  }
+  .form-check-input[type=radio] {
+    border-radius: 50%;
+  }
+  .form-check-input:active {
+    filter: brightness(90%);
+  }
+  .form-check-input:focus {
+    border-color: $primary;
+    outline: 0;
+    box-shadow: 0 0.125rem 0.25rem rgba(165, 163, 174, 0.3);
+  }
+  .form-check-input:checked {
+    background-color: $primary;
+    border-color: $primary;
+  }
+  .form-check-input:checked[type=checkbox] {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='13' viewBox='0 0 15 14' fill='none'%3E%3Cpath d='M3.41667 7L6.33333 9.91667L12.1667 4.08333' stroke='%23fff' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
+  .form-check-input:checked[type=radio] {
+    background-image: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='5' y='5' width='8' height='8' rx='4' fill='%23fff'/%3E%3C/svg%3E%0A");
+  }
+  .form-check-input[type=checkbox]:indeterminate {
+    background-color: $primary;
+    border-color: $primary;
+    background-image: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.5 9H12.5' stroke='%23fff' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+  }
+  .form-check-input:disabled {
+    pointer-events: none;
+    filter: none;
+    opacity: 0.5;
+  }
+  .form-check-input[disabled] ~ .form-check-label, .form-check-input:disabled ~ .form-check-label {
+    cursor: default;
+    opacity: 0.5;
+  }
+  
+  .form-check-label {
+    cursor: pointer;
+  }
+  
+  .form-switch {
+    padding-left: 2.5em;
+  }
+  .form-switch .form-check-input {
+    width: 2em;
+    margin-left: -2.5em;
+    background-image: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='9' cy='9' r='6' fill='rgba%2875, 70, 92, 0.3%29'/%3E%3C/svg%3E%0A");
+    background-position: left center;
+    border-radius: 2em;
+    transition: background-position 0.15s ease-in-out;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .form-switch .form-check-input {
+      transition: none;
+    }
+  }
+  .form-switch .form-check-input:focus {
+    background-image: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='9' cy='9' r='6' fill='%237367f0'/%3E%3C/svg%3E%0A");
+  }
+  .form-switch .form-check-input:checked {
+    background-position: right center;
+    background-image: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='9' cy='9' r='6' fill='%23fff'/%3E%3C/svg%3E%0A");
+  }
+  .form-switch.form-check-reverse {
+    padding-right: 2.5em;
+    padding-left: 0;
+  }
+  .form-switch.form-check-reverse .form-check-input {
+    margin-right: -2.5em;
+    margin-left: 0;
+  }
+  
+  .form-check-inline {
+    display: inline-block;
+    margin-right: 1rem;
+  }
+
+// Add form-control css
+  @media (prefers-reduced-motion: reduce) {
+    .form-control {
+      transition: none;
+    }
+  }
+  .form-control[type=file] {
+    overflow: hidden;
+  }
+  .form-control[type=file]:not(:disabled):not([readonly]) {
+    cursor: pointer;
+  }
+  .form-control:focus {
+    color: #6f6b7d;
+    background-color: #fff;
+    border-color: $primary;
+    outline: 0;
+    box-shadow: 0 0.125rem 0.25rem rgba(165, 163, 174, 0.3);
+  }
+  .form-control::-webkit-date-and-time-value {
+    height: 2.714rem;
+  }
+  .form-control::-moz-placeholder {
+    color: #b7b5be;
+    opacity: 1;
+  }
+  .form-control::placeholder {
+    color: #b7b5be;
+    opacity: 1;
+  }
+  .form-control:disabled {
+    background-color: rgba(75, 70, 92, 0.08);
+    opacity: 1;
+  }
+  .form-control::file-selector-button {
+    padding: 0.7rem 1rem;
+    margin: -0.7rem -1rem;
+    -webkit-margin-end: 0.875rem;
+            margin-inline-end: 0.875rem;
+    color: #6f6b7d;
+    background-color: #fff;
+    pointer-events: none;
+    border-color: inherit;
+    border-style: solid;
+    border-width: 0;
+    border-inline-end-width: 1px;
+    border-radius: 0;
+    transition: all 0.2s ease-in-out;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .form-control::file-selector-button {
+      transition: none;
+    }
+  }
+  .form-control:hover:not(:disabled):not([readonly])::file-selector-button {
+    background-color: #f2f2f2;
+  }

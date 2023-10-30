@@ -1,26 +1,169 @@
+<!--
+Template Name: Vuexy - Vuejs, React, Angular, HTML & Laravel Admin Dashboard Template
+Author: PixInvent
+Website: http://www.pixinvent.com/
+Purchase: https://1.envato.market/vuexy_admin
+Renew Support: https://1.envato.market/vuexy_admin
+Contact: hello@pixinvent.com
+Follow: www.twitter.com/pixinvents
+Like: www.facebook.com/pixinvents
+License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
+
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8" />
-  <title>Ionic App</title>
-
+  <title>EZ League - A SPORTS MANAGEMENT SYSTEM</title>
   <base href="/" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description"
+    content="EZ Active focuses on custom solutions for sports league operators that need more specific features than can be found in a “one size fits all” team management app. We pride ourselves on developing the most useful user experience for each of our partnered leagues." />
+  <meta name="keywords"
+    content="EZ League, EZ Active, management system, management app, sport management app, team app design" />
+  <meta name="author" content="EZ LEAGUE" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-  <meta name="color-scheme" content="light dark" />
-  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta name="format-detection" content="telephone=no" />
-  <meta name="msapplication-tap-highlight" content="no" />
+  <link rel="icon" type="image/x-icon" href="assets/images/logo/favicon.ico" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600"
+    rel="stylesheet" />
+  <link rel="manifest" href="manifest.webmanifest">
+  <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+  <!-- google fonts poppins-->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <!-- public sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <!-- popins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
 
-  <link rel="icon" type="image/png" href="assets/icon/favicon.png" />
+  <!-- fontawsome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <!-- add to homescreen for ios -->
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <meta name="theme-color" content="#1976d2">
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgjNW0WA93qphgZW-joXVR6VC3IiYFjfo"></script> -->
+
+  <!-- Vuexy loading Screen CSS -->
+  <style type="text/css">
+    #loading-bg {
+      width: 100%;
+      height: 100%;
+      background: #fff;
+      display: block;
+      position: absolute;
+      z-index: 99999;
+      pointer-events: none;
+    }
+
+    .loading-logo {
+      position: absolute;
+      left: calc(50% - 45px);
+      top: 40%;
+    }
+
+    .loading {
+      position: absolute;
+      left: calc(50% - 35px);
+      top: 50%;
+      padding-top: 20px;
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      border: 3px solid transparent;
+    }
+
+    /* .loading .effect-1,
+      .loading .effect-2 {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border: 3px solid transparent;
+        border-left: 3px solid rgba(121, 97, 249, 1);
+        border-radius: 50%;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+      } */
+
+    .loading .effect-1 {
+      animation: rotate 1s ease infinite;
+    }
+
+    .loading .effect-2 {
+      animation: rotateOpacity 1s ease infinite 0.1s;
+    }
+
+    /* .loading .effect-3 {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border: 3px solid transparent;
+        border-left: 3px solid rgba(121, 97, 249, 1);
+        -webkit-animation: rotateOpacity 1s ease infinite 0.2s;
+        animation: rotateOpacity 1s ease infinite 0.2s;
+        border-radius: 50%;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+      } */
+
+    .loading .effects {
+      transition: all 0.3s ease;
+    }
+
+    @keyframes rotate {
+      0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+      }
+
+      100% {
+        -webkit-transform: rotate(1turn);
+        transform: rotate(1turn);
+      }
+    }
+
+    @keyframes rotateOpacity {
+      0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+        opacity: 0.1;
+      }
+
+      100% {
+        -webkit-transform: rotate(1turn);
+        transform: rotate(1turn);
+        opacity: 1;
+      }
+    }
+  </style>
+  <!-- / Vuexy loading Screen CSS -->
 </head>
 
 <body>
-  <app-root></app-root>
+  <!-- Vuexy loading Screen -->
+  <core-loading-screen id="loading-bg">
+    <div class="loading-logo">
+      <img src="assets/images/logo/favicon.png" alt="Logo" />
+    </div>
+    <div class="loading">
+      <div class="effect-1 effects"></div>
+      <div class="effect-2 effects"></div>
+      <div class="effect-3 effects"></div>
+    </div>
+  </core-loading-screen>
+  <!-- / Vuexy loading Screen -->
+
+  <!-- Vuexy root component -->
+  <app-root> </app-root>
+  <!-- / Vuexy root component -->
 </body>
 
 </html>

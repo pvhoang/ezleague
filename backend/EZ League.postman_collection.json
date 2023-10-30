@@ -1,0 +1,308 @@
+{
+	"info": {
+		"_postman_id": "5da56e2c-7623-4e8c-9d70-6e6bfab2e129",
+		"name": "EZ League",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4696939"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							},
+							{
+								"key": "X-localization",
+								"value": "cn",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "project_id",
+									"value": "1",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "first_name",
+									"value": "League",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "Admin",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "luuhoanglong508@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "123456",
+									"type": "text"
+								},
+								{
+									"key": "role_id",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{API_URL}}/auth/register",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							},
+							{
+								"key": "X-localization",
+								"value": "en",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "superadmin@ezactive.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{API_URL}}/auth/login",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-info",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{API_URL}}/auth/get-info",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"auth",
+								"get-info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "forgot password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "long508@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{API_URL}}/auth/forgot-password",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"auth",
+								"forgot-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reset-password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "password",
+									"value": "123456789",
+									"description": "new password",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "123456789",
+									"description": "new comfirm password",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "a85b9c78d8f5cf9da14dddbf6aa5252e41abe0756be9dbff239206f44a88e375",
+									"description": "get from email when run api forgot password",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "luuhoanglong508@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{API_URL}}/auth/reset-password",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"auth",
+								"reset-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{API_URL}}/auth/logout",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMTcyYTM1NGU5NDkxZWI3ZTVlNWE4OGU3ZGUwYmI1YmMwMGI0MzNjZjhhZmNiMTU5NmE2Zjk0M2ZhZGM4ZmI1YjFkYjM3NmJjYjhlOTA1ZTAiLCJpYXQiOjE2NzYzNjE2NDUuMjkxODE3LCJuYmYiOjE2NzYzNjE2NDUuMjkxODIsImV4cCI6MTcwNzg5NzY0NS4yODM2ODMsInN1YiI6IjEiLCJzY29wZXMiOltdfQ.W9iMeFL76QjHPrjz4wnJcCnHzZKdkQJWnVk6rZA9tInH6RiWmUn_DyLtnaISKLAYSZ2Eak48hmYbKwH01LsLHClY15VWjmHK4LyAsIiEXUhjn_2ZFDzc9vTiReIkVAyU98wKMU1xNGexg2-1VCqMjuzheMMPgmhd4cWhjBCyTYv2Hol4RC_bmKAsw8dlj_sYIQaUTbhl0XdKM_tNVWeRAUdmAdvN9Hj5XXR0CfQj-MRadLAmnPt-AKWixqnsPbtBlFT9hdfyKet3rF1PgddjogcJ_Vydg-9zUbEW4WtPa7z8-lK0EB-0oyAynVVov0yiaieTdlAeN59wNMCeKWYFiky19jW4lMI19x_rhNpw_RTwSqYZWaCRFX3rMqS8wZ5WdkcJONFZp800GMcxHs90PqtJETQ2E0zIdAeesPJOs9GaV8Y6FPCzKbI_pAgZGgkMfj0le5wGdlsGKxxdiDIGlANQcpQ9HuIchEs5kxRZbWPGql6m696fg5X446CT2UEiss5cSBGXgdnIKk-NxDVGsfDXpGBtQVxwd7uoToGsd8SzRZW1aJwfHpADWo-sMd0OEcjWcoux1Wr7w5xSvgOaMu36ARM5hObBLHv2S61fyOCWQtJSvqYk3l7_7Ypz_NxulHTzYUBxXgDyMzutATN5fR1O61VrIr_qKKo70lVI9FU",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "API_URL",
+			"value": "https://ezleague.ezactive.com/api",
+			"type": "string"
+		}
+	]
+}

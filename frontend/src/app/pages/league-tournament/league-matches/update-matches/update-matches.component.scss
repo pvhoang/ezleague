@@ -1,0 +1,106 @@
+@import "@core/scss/core.scss";
+
+
+.team-details {
+    font-size: 2rem;
+    font-weight: bolder;
+
+    .team-name {
+        color: black;
+        font-size: 1.5rem;
+    }
+
+    img {
+        margin: 0 1rem;
+        width: 5rem;
+    }
+
+    td {
+        padding: 0.2rem 0.5rem;
+    }
+
+    .miw-100px {
+        min-width: 100px;
+    }
+
+    .miw-150px {
+        min-width: 150px;
+    }
+
+    .miw-200px {
+        min-width: 200px;
+    }
+}
+
+.btn-update {
+    width: 130px !important;
+    font-size: 1rem !important;
+    padding: 1rem 1.25rem !important;
+}
+
+@media (max-width: 576px) {
+    .team-details {
+        font-size: 1.5rem;
+
+        .team-name {
+            font-size: 1rem;
+        }
+
+        .p-1 {
+            padding: 0.8rem !important;
+        }
+
+        .h5 {
+            font-size: 0.8rem;
+        }
+
+        img {
+            margin: 0 0.5rem;
+            width: 3rem;
+        }
+    }
+
+    .h4 {
+        font-size: 1rem !important;
+    }
+
+    .btn-update {
+        width: 100px !important;
+        font-size: 0.8rem !important;
+        padding: 0.5rem 0.8rem !important;
+    }
+
+}
+
+@media (max-width: 300px) {
+
+    .h4 {
+        font-size: 0.8rem !important;
+    }
+
+    .team-details {
+        font-size: 1rem;
+        .team-name {
+            font-size: 0.8rem;
+        }
+
+        .p-1 {
+            padding: 0.5rem !important;
+        }
+
+        .h5 {
+            font-size: 0.5rem;
+        }
+
+        img {
+            margin: 0 0.25rem;
+            width: 2rem;
+        }
+    }
+
+    .btn-update {
+        width: 80px !important;
+        font-size: 0.5rem !important;
+        padding: 0.3rem 0.5rem !important;
+    }
+}

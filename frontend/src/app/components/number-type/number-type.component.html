@@ -1,0 +1,19 @@
+<div class="float-right">
+  <core-touchspin
+    (onChange)="onChange($event)"
+    [numberValue]="formControl.value"
+    [minValue]="to.min"
+    [maxValue]="to.max"
+    [stepValue]="to.step"
+    [color]="to.color ? to.color : 'primary'"
+    [size]="to.size ? to.size : ''"
+    [disable]="to.disabled"
+    id="{{field.key}}"
+  ></core-touchspin>
+  <input
+    type="input"
+    style="display: none"
+    [formControl]="formControl"
+    [formlyAttributes]="field"
+  />
+</div>

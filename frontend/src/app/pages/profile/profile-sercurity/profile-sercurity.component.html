@@ -1,0 +1,40 @@
+<div class="card">
+    <div class="card-body">
+        <form [formGroup]="form" (ngSubmit)="submit()">
+            <formly-form [model]="model" [fields]="fields" [options]="options" [form]="form"></formly-form>
+            <!-- check box show password -->
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="show_password"
+                    (change)="showPassword($event)" />
+                <label class="custom-control-label" for="show_password">{{'Show password' |translate}}</label>
+            </div>
+            <h5 class="mt-1">
+                {{'Password Requirements' | translate}}:
+            </h5>
+            <ul class="pl-2">
+                <li>
+                    {{'Password must be at least :min characters long' | translate : {min: 5} }}
+                </li>
+            </ul>
+            <button type="submit" class="btn btn-primary submit-button" [disabled]="!form.valid">
+                {{'Save' | translate}}
+            </button>
+        </form>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h4>{{'Two-step verification'| translate }}</h4>
+    </div>
+    <div class="card-body">
+        <p>
+            {{'Two-factor authentication adds a layer of security to your account by requiring
+            more than just a password to log in' | translate}}.
+        </p>
+        <button class="btn btn-{{user.two_factor_auth?'danger':'primary'}}" (click)="toggle2fa()">
+            <strong>{{(user.two_factor_auth? 'Disable':'Enable') | translate}} </strong>{{'two-factor authentication' |
+            translate}}
+        </button>
+    </div>
+</div>

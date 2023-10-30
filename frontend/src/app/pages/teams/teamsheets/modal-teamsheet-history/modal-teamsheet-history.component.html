@@ -1,0 +1,32 @@
+<div>
+
+    <div class="modal-header">
+        <!-- text center title and subtitle -->
+        <!-- title is 'Team List 'H2 -->
+        <!-- subtitle is 'Assign player to team' h5-->
+        <div class="text-center w-100">
+            <h2>
+                <span class="text-capitalize">{{'Submitted History' | translate}}</span>
+            </h2>
+
+        </div>
+        
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"
+            (click)="onClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+
+    </div>
+    <div class="modal-body" tabindex="0" ngbAutofocus>
+        <table datatable [dtOptions]="dtOptions1" class="table border row-border hover">
+            <thead>
+                <tr>
+                    <th class="text-capitalize">{{'Submitted' | translate}}</th>
+                    <th class="text-capitalize">{{'PDF Link' | translate}}</th> 
+                </tr>
+            </thead>
+        </table>
+    </div>
+     
+    
+</div>

@@ -1,0 +1,93 @@
+.team-score .score {
+    height: fit-content;
+    width: 20px;
+    text-align: center;
+    padding: 0px;
+    margin-left: 1em;
+}
+
+.card {
+    margin: 0;
+}
+
+.team-score {
+    font-family: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    margin: 5px;
+    position: absolute;
+    width: auto;
+    height: auto;
+    padding: 2px;
+    left: 0;
+    z-index: 1;
+}
+
+.match-detail-container{
+    padding:15px;
+}
+
+
+
+
+
+
+.player-info{
+    width: 100%;
+    margin: auto;
+   .photo{
+    width: 50px;
+    height: 70px;
+   }
+   img{
+    max-width: 100%;
+    height: 100%;
+   }
+}
+
+.back button{
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 95vh;
+    border: 1px solid black;
+    border-radius: 50%;
+    content-visibility: auto;
+    
+}
+
+.announce {
+    position: fixed;
+    z-index: 999;
+    top: 30%;
+    left: 0;
+    right: 0;
+    width: fit-content;
+    border-radius: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.announce h1{
+    text-shadow: 1px 1px 1px rgb(255, 255, 255);
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+    border-radius: 20px;
+    margin:10px;
+}
+
+@keyframes shake {
+    10%, 90% {
+      transform: translate3d(-1px, 0, 0);
+    }
+  
+    20%, 80% {
+      transform: translate3d(2px, 0, 0);
+    }
+  
+    30%, 50%, 70% {
+      transform: translate3d(-4px, 0, 0);
+    }
+  
+    40%, 60% {
+      transform: translate3d(4px, 0, 0);
+    }
+  }
+

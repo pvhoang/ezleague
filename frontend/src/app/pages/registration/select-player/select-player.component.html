@@ -1,0 +1,117 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <!-- content-header component -->
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+    <!-- Player registration status start -->
+    <section id="select-player-page">
+      <div class="row">
+        <div class="col-12 col-sm-6">
+          <h6 *ngIf="players.length == 0" class="my-2 text-secondary">
+            {{ 'Please click "Add new player" to register' | translate }}
+          </h6>
+          <h6 *ngIf="players.length > 0" class="my-2 text-secondary">
+            {{ 'Player registration status' | translate }}
+          </h6>
+        </div>
+        <div class="col-6 mt-auto mb-auto d-none d-sm-inline-block">
+          <button data-testid="btnAddNewPlayer" class="btn btn-primary float-right" (click)="openRegisterNewPlayer()">
+            <span>{{ 'Add new player' | translate }}</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="row mb-2 mb-sm-0">
+        <div class="col-lg-4 col-md-6 col-12" *ngFor="let player of players">
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center mb-1">
+                <div class="media">
+                  <div class="avatar avatar-xl mr-75">
+                    <img [src]="player.photo" style="object-fit: cover" class="rounded" alt="Avatar"
+                      (error)="onError($event)" />
+                  </div>
+                  <div class="media-body my-auto">
+                    <h4 class="mb-0">
+                      {{ player.user.first_name + ' ' + player.user.last_name }}
+                    </h4>
+                    <small class="text-muted">{{
+                      player.dob | date : 'dd-MMM-yyyy'
+                      }}</small>
+                    <span *ngIf="is_validate_required" class="d-table badge badge-pill"
+                      [class]="getBadgeValidation(player.validate_status)">
+                      {{ (player.validate_status|translate).toUpperCase() }}
+                    </span>
+                  </div>
+                </div>
+                <button *ngIf="is_validate_required" class="btn btn-outline-primary btn-sm"
+                  (click)="selectPlayer(player)">
+                  {{ 'Edit' | translate }}
+                </button>
+              </div>
+              <hr />
+              <div>
+                <!-- Register old player modal -->
+                <app-select-club-module *ngIf="!checkRegistration(player.registrations)" class="players-description"
+                  [playerId]="player['id']" [nearestClub]="player.nearestRegis.club_id"
+                  [eventUpdatePlayer]="eventUpdatePlayer">
+                </app-select-club-module>
+                <div *ngIf="checkRegistration(player.registrations)">
+                  <div class="row">
+                    <div class="col">
+                      <h6 class="font-weight-bolder">
+                        {{ 'Registration Information' | translate }}
+                      </h6>
+                      <div class="d-flex text-secondary">
+                        <i data-feather="map-pin" class="mr-1 mt-25"></i>
+                        <span> Club: {{ player.nearestRegis.club.name }} </span>
+                      </div>
+                      <div class="d-flex text-secondary">
+                        <i data-feather="bookmark" class="mr-1 mt-25"></i>
+                        <span>
+                          {{ 'Status' | translate }}:
+                          <small class="badge badge-pill" [class]="
+                          getBadgeRegistration(
+                            player.nearestRegis.approval_status
+                          )
+                        ">{{ player.nearestRegis.approval_status }}</small>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="col-auto p-0 pr-1" *ngIf="season.fee > 0">
+                      <ng-container *ngFor="let item of player.nearestRegis.payment_details">
+                        <button class="btn btn-outline-warning btn-sm"
+                          *ngIf="item.type == PAYMENT_DETAIL_TYPES.registration && !PAYMENT_STATUS_PAID.includes(item.status)"
+                          (click)="payment(player,player.nearestRegis.id,item)">
+                          {{ 'Pay now' | translate }}
+                        </button>
+                      </ng-container>
+                      <!-- <button class="btn btn-outline-warning btn-sm"
+                        *ngIf="player.nearestRegis.payment_details.length == 0" (click)="payment(player,player.nearestRegis.id)">
+                        {{ 'Pay now' | translate }}
+                      </button> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add new player button -->
+      <div class="col-12 d-sm-none d-inline-block sticky-sm-bottom">
+        <button data-testid="btnAddNewPlayer" class="btn btn-block btn-primary" (click)="openRegisterNewPlayer()">
+          <span>{{ 'Add new player' | translate }}</span>
+        </button>
+      </div>
+    </section>
+    <!-- Player registration status end -->
+
+    <!-- Register new player modal -->
+    <core-sidebar class="modal modal-slide-in sidebar-todo-modal fade" name="register-new-player"
+      overlayClass="modal-backdrop">
+      <app-register-new-player [eventUpdatePlayer]="eventUpdatePlayer" [registerParam]="currentPlayer">
+      </app-register-new-player>
+    </core-sidebar>
+  </div>
+</div>

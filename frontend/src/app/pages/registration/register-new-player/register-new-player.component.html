@@ -1,0 +1,32 @@
+<div class="slideout-content">
+  <div class="modalsd modal-slide-in sdfade new-user-modal" id="modals-slide-in">
+    <div class="modal-dialog dialog-full">
+      <div class="modal-content pt-0">
+        <div class="modal-header mb-1 text-primary text-center">
+          <div class="btn-back" (click)="toggleSidebar()">
+            <i class="fa fa-chevron-left"></i>
+            <span> {{ 'Back' | translate }}</span>
+          </div>
+          <div class="col">
+            <b class="mr-3 h4 title-editor text-capitalize">
+              <span *ngIf="registerParam.updated">
+                {{ 'Update player' | translate }}
+              </span>
+              <span *ngIf="!registerParam.updated">
+                {{ 'Register new player' | translate }}
+              </span>
+            </b>
+          </div>
+        </div>
+        <div class="modal-body no-margin">
+          <form [formGroup]="form" (ngSubmit)="onSubmit()" #formDirective="ngForm">
+            <formly-form [model]="model" [fields]="fields" [options]="options" [form]="form"></formly-form>
+            <button type="submit" class="btn btn-primary btn-block round-10" data-testid="btnSubmit">
+              {{ registerParam.updated?('Update' | translate ):('Submit' | translate) }}
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

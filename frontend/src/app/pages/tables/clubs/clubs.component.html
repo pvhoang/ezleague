@@ -1,0 +1,33 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <!-- content-header component -->
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+    <div class="card">
+      <div class="card-header">
+        <!-- <h4 class="card-title">Table Basic</h4> -->
+      </div>
+      <table
+        datatable
+        [dtOptions]="dtOptions"
+        class="table border row-border hover"
+      ></table>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<core-sidebar
+  class="modal modal-slide-in sidebar-todo-modal fade"
+  [name]="table_name"
+  overlayClass="modal-backdrop"
+>
+  <app-editor-sidebar
+    [table]="dtElement"
+    [fields]="fields"
+    [params]="params"
+    (formChange)="formChange($event)"
+    [paramsToPost]="paramsToPost"
+    [onSubmit]="onSubmitted"
+  >
+  </app-editor-sidebar>
+</core-sidebar>

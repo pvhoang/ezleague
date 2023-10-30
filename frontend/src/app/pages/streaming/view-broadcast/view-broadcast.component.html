@@ -1,0 +1,275 @@
+<!-- <ng-container *ngFor="let item of stream_list"> -->
+
+<div class="row">
+    <div class="col-12 col-md-7">
+        <div class="red5pro-media-container">
+            <div class="announce">
+
+                <!-- match start -->
+                <h1 class="bg bg-light text text-success text-center" *ngIf="match.starting">
+                    <i class="fa fa-futbol"></i>
+                    MATCH STARTED
+                </h1>
+                <!-- match end -->
+                <h1 class=" bg bg-light texttext-danger text-center" *ngIf="match.starting==false">
+                    <i class="fa fa-futbol"></i>
+                    MATCH ENDED
+                </h1>
+                <!-- goal -->
+
+                <h1 class="bg bg-light text text-success text-center" *ngIf="match.isGoal">
+                    <i class="fa fa-futbol"></i>
+                    <span *ngIf="match.team == 'home' ">{{match_info?.home_team?.name}}</span>
+                    <span *ngIf="match.team == 'away'">{{match_info?.away_team?.name}}</span>
+                    GOAL !!!
+                </h1>
+                <h1 class="bg bg-light text text-warning text-center" *ngIf="match.isYellowCard">
+                    <i class="fa-solid fa-cards-blank"></i>
+                    <span *ngIf="match.yellow_team=='home'">{{match_info?.home_team?.name}}</span>
+                    <span *ngIf="match.yellow_team=='away'">{{match_info?.away_team?.name}}</span>
+                    YEllOW CARD!!!
+                </h1>
+                <h1 class="bg bg-light text text-danger text-center" *ngIf="match.isRedCard">
+                    <i class="fa-solid fa-cards-blank"></i>
+                    <span *ngIf="match.red_team=='home'">{{match_info?.home_team?.name}}</span>
+                    <span *ngIf="match.red_team=='away'">{{match_info?.away_team?.name}}</span>
+                    RED CARD!!!
+                </h1>
+            </div>
+            <ng-container *ngIf="!useHLS">
+                <vg-player>
+
+                    <vg-overlay-play></vg-overlay-play>
+                    <vg-buffering></vg-buffering>
+                    <vg-controls>
+                        <vg-play-pause></vg-play-pause>
+                        <button class="btn btn-icon btn-flat-dark" *ngIf="!useHLS">
+                            <span class="text-video"><i class="fa-solid fa-circle fa-beat fa-2xs mr-50"
+                                    style="color: #f71818;"></i> Live</span>
+                        </button>
+                        <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+                        <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+                        <vg-mute></vg-mute>
+                        <vg-volume></vg-volume>
+                        <vg-fullscreen></vg-fullscreen>
+                    </vg-controls>
+
+                    <video [vgMedia]="media" #media id="red5pro-subscriber" preload="auto" autoplay playsinline>
+                    </video>
+                    <div class="announce-">
+                        <!-- If Goal show Image -->
+                        <div class="announce-goal" *ngIf="isGoal">
+                            <img src="assets/images/view/goal.png" alt="goal" width="100%" height="100%">
+                        </div>
+                        <!-- If Red Card show Image -->
+                        <div class="announce-red-card" *ngIf="isRedCard">
+                            <img src="assets/images/view/red-card.png" alt="red-card" width="100%" height="100%">
+                        </div>
+                        <!-- If Yellow Card show Image -->
+                        <div class="announce-yellow-card" *ngIf="isYellowCard">
+                            <img src="assets/images/view/yellow-card.png" alt="yellow-card" width="100%" height="100%">
+                        </div>
+                    </div>
+                </vg-player>
+            </ng-container>
+            <ng-container *ngIf="useHLS">
+
+                <vg-player>
+                    <video #media #vgHls="vgHls" [vgMedia]="media" [vgHls]="vod_url" id="singleVideo" controls
+                        crossorigin autoplay>
+                    </video>
+                </vg-player>
+            </ng-container>
+        </div>
+    </div>
+    <div class="col-12 col-md-5">
+        <div class="card">
+            <div class="match-detail-container">
+                <div class="row">
+                    <div class="col-12 text-center ">
+                        <button class="float-left btn btn-flat-dark p-25" backButton>
+                            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                            {{'Back' | translate}}
+                        </button>
+
+
+                    </div>
+                </div>
+
+                <ul ngbNav #nav="ngbNav" class="nav-tabs" (tabChange)="onTabChange($event)">
+                    <li ngbNavItem>
+                        <a ngbNavLink>Match Detail</a>
+                        <ng-template ngbNavContent>
+                            <div class="mt-25 timeline card">
+                                <table class="table table-borderless">
+                                    <thead>
+                                        <tr class="thead">
+                                            <th scope="col" class="text-center">
+                                                {{match_info?.home_team?.name}}
+                                            </th>
+                                            <th scope="col" class="text-center">
+                                                Statistic
+                                            </th>
+                                            <th scope="col" class="text-center">
+                                                {{match_info?.away_team?.name}}
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-center">
+                                        <tr>
+                                            <td>
+                                                {{match?.homeGoal}}
+                                            </td>
+                                            <td>
+                                                Goal
+                                            </td>
+                                            <td>
+                                                {{match?.awayGoal}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                {{match?.homeRedCard}}
+                                            </td>
+                                            <td>
+                                                Red Card
+                                            </td>
+                                            <td>
+                                                {{match?.awayRedCard}}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                {{match?.homeYellowCard}}
+                                            </td>
+                                            <td>
+                                                Yellow Card
+                                            </td>
+                                            <td>
+                                                {{match?.awayYellowCard}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="mt-25 timeline card">
+                                <table class="table table-borderless">
+                                    <thead>
+                                        <tr class="thead">
+                                            <th scope="col" class="text-center">
+                                                {{match_info?.home_team?.name}}
+                                            </th>
+                                            <th scope="col" class="text-center">
+                                                Timeline
+                                            </th>
+                                            <th scope="col" class="text-center">
+                                                {{match_info?.away_team?.name}}
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-center">
+                                        <tr *ngFor="let item of match_details">
+                                            <td scope="row"
+                                                class="p-50  text-left d-flex flex-row justify-content-start"
+                                                style="gap: 20px;">
+                                                <div class="row p-0 text-center" *ngIf="item.type_team=='home'">
+
+                                                    <div class="col pt-25 pr-50">
+                                                        {{item.player?.user?.first_name}}
+                                                        {{item.player?.user?.last_name}}
+                                                    </div>
+
+                                                </div>
+
+                                            </td>
+                                            <td class="p-50 text-center">
+                                                <div class="col-auto pt-25 p-0" *ngIf="item.type_team=='home'">
+                                                    <!-- arrow -->
+                                                    <i [class]="getIconByType(item.type)"></i> &nbsp;
+                                                    {{item.time}}'
+                                                </div>
+
+                                                <div class="col-auto pt-25 p-0" *ngIf="item.type_team=='away'">
+                                                    {{item.time}}' &nbsp;
+                                                    <i [class]="getIconByType(item.type)"></i>
+                                                    <!-- arrow -->
+                                                </div>
+                                            </td>
+                                            <td class="p-50 text-right d-flex flex-row justify-content-end"
+                                                style="gap: 20px;">
+
+                                                <div class="row p-0 text-center" *ngIf="item.type_team=='away'">
+                                                    <div class="col pt-25 pl-50">
+                                                        {{item.player?.user?.first_name}}
+                                                        {{item.player?.user?.last_name}}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </ng-template>
+                    </li>
+                    <li ngbNavItem>
+                        <a ngbNavLink>Player list</a>
+                        <ng-template ngbNavContent>
+                            <ul ngbNav #nav1="ngbNav" class="nav-tabs">
+                                <li ngbNavItem>
+                                    <a ngbNavLink> {{match_info?.home_team?.name}}</a>
+                                    <ng-template ngbNavContent>
+                                        <ul class="list-group" *ngFor="let item of home_players">
+                                            <li class="list-group-item mb-1">
+                                                <div class="row">
+                                                    <div class="col-auto">
+                                                        <img style="border-radius: 5px;" src="{{item?.player?.photo}}"
+                                                            width="40" alt=" player photo">
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="player-name">
+                                                            {{item?.player?.user?.first_name}}
+                                                            {{item?.player?.user?.last_name}}
+                                                        </div>
+                                                        <div class="text-muted">
+                                                            YOB: {{item?.player?.dob | date:'yyyy'}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </ng-template>
+                                </li>
+                                <li ngbNavItem>
+                                    <a ngbNavLink> {{match_info?.away_team?.name}}</a>
+                                    <ng-template ngbNavContent>
+                                        <ul class="list-group" *ngFor="let item of away_players">
+                                            <li class="list-group-item mb-1">
+                                                <div class="row">
+                                                    <div class="col-auto">
+                                                        <img style="border-radius: 5px;" src="{{item?.player?.photo}}"
+                                                            width="40" alt=" player photo">
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="player-name">
+                                                            {{item?.player?.user?.first_name}}
+                                                            {{item?.player?.user?.last_name}}
+                                                        </div>
+                                                        <div class="text-muted">
+                                                            YOB: {{item?.player?.dob | date:'yyyy'}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </ng-template>
+                                </li>
+                            </ul>
+                            <div [ngbNavOutlet]="nav1" class="mt-2"></div>
+                        </ng-template>
+                    </li>
+                    <div [ngbNavOutlet]="nav" class="mt-2 w-100"></div>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

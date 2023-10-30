@@ -1,0 +1,78 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="myModalLabel1">{{params.title | translate}}</h4>
+  <button type="button" class="close" (click)="closeModal()" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form [formGroup]="form">
+  <div class="modal-body" tabindex="0" ngbAutofocus>
+    <div class="col-12 mb-4">
+      <div class="formGroup">
+        <label class="form-label" for="name">{{ 'Role Name' | translate }}*</label>
+        <input formControlName="name" type="text" id="name" class="form-control"
+          placeholder="{{'Enter a role name'|translate}}" tabindex="-1" />
+      </div>
+      <div *ngIf="submitted && f.name.errors" class="invalid-feedback d-block">
+        <app-error-message [errors]="f.name.errors" field="name" dataTestId="errName"></app-error-message>
+      </div>
+      <div class="formGroup mt-1">
+        <label class="form-label" for="description">{{ 'Description' | translate }}</label>
+        <input formControlName="description" type="text" id="description" class="form-control"
+          placeholder="{{'Enter description'|translate}}" tabindex="2" />
+      </div>
+      <div *ngIf="submitted && f.description.errors" class="invalid-feedback d-block">
+        <app-error-message [errors]="f.description.errors" field="description"
+          dataTestId="errDescription"></app-error-message>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <h5>{{'Role Permissions'|translate}}</h5>
+      <div *ngIf="submitted && f.permissions.errors" class="invalid-feedback d-block">
+        <app-error-message [errors]="f.permissions.errors" field="permissions"
+          dataTestId="errPermissions"></app-error-message>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-flush-spacing">
+          <tbody>
+            <tr>
+              <td class="text-nowrap fw-semibold">
+                {{'Administrator Access'|translate}}
+                <i class="ti ti-info-circle" data-bs-toggle="tooltip" data-bs-placement="top"
+                  title="Allows a full access to the system"></i>
+              </td>
+              <td>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="selectAll" (change)="onSelectAll($event)" />
+                  <label class="form-check-label" for="selectAll">
+                    {{'Select All'|translate}}
+                  </label>
+                </div>
+              </td>
+            </tr>
+            <tr *ngFor="let item of permissions">
+              <td class="text-nowrap fw-semibold">{{ item.label | translate }}</td>
+              <td>
+                <div class="d-flex">
+                  <div class="form-check mr-1 mr-lg-3">
+                    <input class="form-check-input" type="checkbox" id="per_{{ item.value }}" value="{{ item.value }}"
+                      [checked]="item.checked" (change)="onSelected($event)" />
+                    <label class="form-check-label" for="per_{{ item.value }}">
+                      {{'Access'|translate}}
+                    </label>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="onSubmit()" rippleEffect>
+      {{'Submit'|translate}}
+    </button>
+  </div>
+</form>

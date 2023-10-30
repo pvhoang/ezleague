@@ -1,0 +1,7 @@
+{
+  "/hkjfl": {
+    "target": "https://app.hkjfl.com",
+    "secure": false,
+    "changeOrigin": true
+  }
+}

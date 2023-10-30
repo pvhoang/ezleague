@@ -1,0 +1,32 @@
+{
+    "arial": {
+        "normal": "/var/www/html/ezleague/server/storage/fonts/arial",
+        "bold": "/var/www/html/ezleague/server/storage/fonts/arial",
+        "italic": "/var/www/html/ezleague/server/storage/fonts/arial",
+        "bold_italic": "/var/www/html/ezleague/server/storage/fonts/arial"
+    },
+    "firefly-sung": {
+        "normal": "/var/www/html/ezleague/server/storage/fonts/fireflysung",
+        "bold": "/var/www/html/ezleague/server/storage/fonts/fireflysung",
+        "italic": "/var/www/html/ezleague/server/storage/fonts/fireflysung",
+        "bold_italic": "/var/www/html/ezleague/server/storage/fonts/fireflysung"
+    },
+    "simsum": {
+        "normal": "/var/www/html/ezleague/server/storage/fonts/SIMSUN",
+        "bold": "/var/www/html/ezleague/server/storage/fonts/SIMSUN",
+        "italic": "/var/www/html/ezleague/server/storage/fonts/SIMSUN",
+        "bold_italic": "/var/www/html/ezleague/server/storage/fonts/SIMSUN"
+    },
+    "noto": {
+        "normal": "/var/www/html/ezleague/server/storage/fonts/NotoSansCJKhk-VF",
+        "bold": "/var/www/html/ezleague/server/storage/fonts/NotoSansCJKhk-VF",
+        "italic": "/var/www/html/ezleague/server/storage/fonts/NotoSansCJKhk-VF",
+        "bold_italic": "/var/www/html/ezleague/server/storage/fonts/NotoSansCJKhk-VF"
+    },
+    "heiti": {
+        "normal": "/var/www/html/ezleague/server/storage/fonts/Heiti",
+        "bold": "/var/www/html/ezleague/server/storage/fonts/Heiti",
+        "italic": "/var/www/html/ezleague/server/storage/fonts/Heiti",
+        "bold_italic": "/var/www/html/ezleague/server/storage/fonts/Heiti"
+    }
+}

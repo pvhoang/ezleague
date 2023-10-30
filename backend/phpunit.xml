@@ -1,22 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
          bootstrap="vendor/autoload.php"
          colors="true"
 >
     <testsuites>
         <testsuite name="Unit">
-            <directory>tests/Unit</directory>
+            <directory suffix="Test.php">./tests/Unit</directory>
         </testsuite>
         <testsuite name="Feature">
-            <directory>tests/Feature</directory>
+            <directory suffix="Test.php">./tests/Feature</directory>
         </testsuite>
     </testsuites>
-    <source>
+    <coverage processUncoveredFiles="true">
         <include>
-            <directory>app</directory>
+            <directory suffix=".php">./app</directory>
         </include>
-    </source>
+        <report>
+            <html outputDirectory="phpunit_reports/html-coverage" lowUpperBound="50" highLowerBound="90"/>
+            <clover outputFile="phpunit_reports/coverage.xml" />
+        </report>
+    </coverage>
+      <logging>
+            <testdoxHtml outputFile="phpunit_reports/testdox.html"/>
+            <testdoxText outputFile="phpunit_reports/testdox.txt"/>
+            <junit outputFile="phpunit_reports/junit.xml"/>
+            <text outputFile="phpunit_reports/logfile.txt"/>
+        </logging>
     <php>
         <env name="APP_ENV" value="testing"/>
         <env name="BCRYPT_ROUNDS" value="4"/>

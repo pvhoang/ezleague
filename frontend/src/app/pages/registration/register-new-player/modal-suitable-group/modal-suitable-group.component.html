@@ -1,0 +1,52 @@
+<div>
+  <div class="modal-header">
+    <!-- close modal -->
+    
+    <!-- text center title and subtitle -->
+    <!-- title is 'Team List 'H2 -->
+    <!-- subtitle is 'Assign player to team' h5-->
+    <div class="text-center w-100">
+      <h2>
+        <span class="text-capitalize">{{ 'League group' | translate }}</span>
+      </h2>
+      <h5>
+        <span class="">{{
+          'Your players can only register in the following groups' | translate
+        }}</span>
+      </h5>
+    </div>
+
+    <button
+      type="button"
+      class="close"
+      data-bs-dismiss="modal"
+      aria-label="Close"
+      (click)="onClose()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" tabindex="0" ngbAutofocus>
+    <table class="table border row-border hover">
+      <thead>
+        <th class="text-capitalize">{{ 'Group Name' | translate }}</th>
+        <th class="text-capitalize">{{ 'Year' | translate }}</th>
+        <th class="text-capitalize">{{ 'Type' | translate }}</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let group of groups">
+          <td>{{ group.name }}</td>
+          <td>{{ group.years }}</td>
+          <td>{{ group.type }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- button accept -->
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="onClose()">
+      <span class="text-capitalize">{{ 'OK' | translate }}</span>
+    </button>
+  </div>
+</div>

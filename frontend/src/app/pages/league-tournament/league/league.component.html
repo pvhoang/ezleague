@@ -1,0 +1,39 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <!-- content-header component -->
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+
+    <!-- <div class="card">
+      <div class="card-header"> -->
+    <div class="row mb-1">
+      <!-- ng select season -->
+      <div class="col">
+        <label class="form-label" for="season">{{ 'Season' | translate }}</label>
+        <ng-select [searchable]="true" [clearable]="false" placeholder="{{ 'Select Season' | translate }}"
+          [(ngModel)]="selectedSeason" (change)="onSelectedSeasonChange($event)">
+          <ng-option *ngFor="let season of currentSeasons" [value]="season.id">{{ season.name }}
+          </ng-option>
+        </ng-select>
+      </div>
+      <div class="col">
+        <label class="form-label" for="group">{{ 'Group' | translate }}</label>
+        <ng-select [clearable]="false" placeholder="{{ 'Select Group' | translate }}" [(ngModel)]="selectedGroup"
+          (change)="onSelectedGroupChange($event)">
+          <ng-option *ngFor="let group of currentGroups" [value]="group" name="group">
+            {{ group.name }}
+          </ng-option>
+        </ng-select>
+      </div>
+    </div>
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="card_table">
+    </table>
+  </div>
+</div>
+<core-sidebar class="modal modal-slide-in sidebar-todo-modal fade" [name]="table_name" overlayClass="modal-backdrop">
+  <app-editor-sidebar [table]="dtElement" [fields]="fields" [params]="params" [new_model]="model">
+  </app-editor-sidebar>
+</core-sidebar>
+<ng-template #rowActionBtn let-data="adtData" let-emitter="captureEvents">
+  <app-btn-dropdown-action [actions]="rowActions" [data]="data" (emitter)="emitter($event)"
+    btnStyle="font-size:15px;color:black!important"></app-btn-dropdown-action>
+</ng-template>

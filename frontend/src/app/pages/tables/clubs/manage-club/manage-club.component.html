@@ -1,0 +1,49 @@
+<div>
+  <div class="modal-header">
+    <div>
+      <h4>
+        <span class="">{{ 'Assign Club Manager' | translate }}</span>
+      </h4>
+    </div>
+
+    <button
+      type="button"
+      class="close"
+      data-bs-dismiss="modal"
+      aria-label="Close"
+      (click)="onClose()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <form [formGroup]="form" (ngSubmit)="onSubmit(model)">
+      <formly-form
+        [form]="form"
+        [fields]="fields"
+        [model]="model"
+      ></formly-form>
+    </form>
+
+    <ul class="list-group">
+      <li
+        class="list-group-item d-flex justify-content-between align-items-center"
+        *ngFor="let item of manager_list"
+      >
+        <div class="">
+          <p>{{ item.first_name }} {{ item.last_name }}</p>
+          <p>{{ item.email }}</p>
+        </div>
+        <button
+          type="button"
+          class="btn btn-outline-danger p-1"
+          (click)="removeManager(item.id)"
+        >
+          {{ 'Remove' | translate }}
+          <i class="bi bi-trash3"></i>
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>

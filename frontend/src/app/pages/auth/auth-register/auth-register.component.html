@@ -1,0 +1,100 @@
+<div class="auth-wrapper auth-v2">
+    <app-translate-module></app-translate-module>
+    <div class="auth-inner row m-0">
+        <!-- Brand logo-->
+        <div class=" d-none d-lg-block d-xl-block">
+            <a class="brand-logo" href="javascript:void(0);">
+                <img src="{{ coreConfig.app.appLogoImage }}" alt="brand-logo" height="28" />
+                <h2 class="brand-text text-primary ml-1">{{ coreConfig.app.appName }}</h2>
+            </a>
+        </div>
+        <!-- /Brand logo-->
+
+        <!-- Left Text-->
+        <div class="d-none d-lg-flex col-lg-8 align-items-center p-5">
+            <div class="w-100 d-lg-flex align-items-center justify-content-center px-5">
+                <!-- <img class="img-fluid"
+                    [src]="coreConfig.layout.skin === 'dark'? 'assets/images/pages/register-v2-dark.svg': 'assets/images/pages/register-v2.svg'"
+                    alt="Register V2" /> -->
+                    <img class="img-fluid" src="assets/images/backgrounds/background_3.png" alt="Register V2" />
+            </div>
+        </div>
+        <!-- /Left Text-->
+        <!-- Register-->
+        <div class="col-lg-4 auth-bg m-0 p-0 auth-form">
+            <div class="card">
+                <div class="row  m-0 p-0">
+                    <div class="col m-0 p-0">
+                        <div class="container-background-form  d-lg-none d-xl-none"
+                            style="background-image: url(assets/images/backgrounds/background_3.png);">
+                        </div>
+                    </div>
+                </div>
+                <div class="row m-0 p-0 form-w-background">
+                    <div class="col">
+                        <div class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-2 mx-auto">
+                            <h2 class="card-title text-center font-weight-bold mb-1">{{'Register' | translate}}
+                            </h2>
+                            <p class="text-center sub-title">{{'Create your parent account!'| translate}}</p>
+                            <form class="auth-register-form mt-2" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                                <div class="form-group">
+                                    <!-- <label for="register-first_name" class="form-label">{{'Surname' | translate}}</label> -->
+                                    <input data-testid="txtSurname" type="text" formControlName="first_name" class="form-control"
+                                        placeholder="{{'Surname (Parent)' | translate}}" aria-describedby="register-first_name" tabindex="1" autofocus
+                                        [ngClass]="{ 'is-invalid': submitted && f.first_name.errors }" />
+                                    <div *ngIf="submitted && f.first_name.errors" class="invalid-feedback">
+                                        <app-error-message dataTestId="errSurname" [errors]="f.first_name.errors" field="surname"></app-error-message>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <!-- <label for="register-last_name" class="form-label">{{'Other names' | translate}}</label> -->
+                                    <input data-testid="txtOthername" type="text" formControlName="last_name" class="form-control"
+                                        placeholder="{{'Other names (Parent)' | translate}}"
+                                        aria-describedby="register-last_name" tabindex="1" autofocus
+                                        [ngClass]="{ 'is-invalid': submitted && f.last_name.errors }" />
+                                    <div *ngIf="submitted && f.last_name.errors" class="invalid-feedback">
+                                        <app-error-message dataTestId="errOthername" [errors]="f.last_name.errors" field="other_names"></app-error-message>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <!-- <label for="register-email" class="form-label">{{'Email' | translate}}</label> -->
+                                    <input data-testid="txtEmail" type="email" formControlName="email" class="form-control"
+                                        placeholder="{{'Email (Parent)' | translate}}" aria-describedby="register-email"
+                                        tabindex="2" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                        <app-error-message dataTestId="errEmail" [errors]="f.email.errors" field="email"></app-error-message>
+                                    </div>
+                                </div>
+            
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox">
+                                        <input data-testid="chbPolicy" class="custom-control-input" type="checkbox"
+                                            id="register-privacy-policy" formControlName="parental_consent" tabindex="4" />
+                                        <label class="custom-control-label" for="register-privacy-policy">
+                                            {{'I agree to the' | translate}} <a
+                                                href="javascript:void(0);">{{'Terms of Service and Privacy Policy' | translate}}</a>
+                                        </label>
+                                    </div>
+                                    <div *ngIf="submitted && f.parental_consent.errors" class="invalid-feedback"
+                                        [ngClass]="{ 'd-block': submitted && f.parental_consent.errors }">
+                                        <div data-testid="errTermOfService" *ngIf="f.parental_consent.errors">
+                                            {{'You must accept the terms and conditions' | translate}}</div>
+                                    </div>
+                                </div>
+                                <button data-testid="btnRegister" class="btn btn-gradient-primary btn-block round-15" tabindex="5"
+                                    rippleEffect [disabled]="loading">
+                                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                                    {{'Sign Up' | translate}}</button>
+                            </form>
+                            <p class="text-center mt-2">
+                                <span>{{'Already have an account?' | translate}}</span><a routerLink="/auth/login"
+                                    data-testid="btnSignin"><span>&nbsp;{{'Login' | translate}}</span></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Register-->
+    </div>
+</div>

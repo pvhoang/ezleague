@@ -1,0 +1,25 @@
+<div class="modal-header">
+  <h4 class="modal-title text-capitalize" id="add_event">
+    {{ 'Add event' | translate }}
+  </h4>
+  <button type="button" class="close" aria-label="Close" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form [formGroup]="form" (ngSubmit)="onSubmit(model)">
+  <div class="modal-body" tabindex="0" ngbAutofocus>
+    <!-- <div class="text-center">
+      <img src="assets\images\backgrounds\modal_event.png" alt="" />
+      <h4 class="modal-title text-capitalize mt-1" id="add_event">
+        {{ 'Add event' | translate }}
+      </h4>
+    </div> -->
+
+    <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary" rippleEffect>
+      {{ 'Add' | translate }}
+    </button>
+  </div>
+</form>

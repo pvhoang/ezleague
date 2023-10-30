@@ -1,0 +1,12 @@
+i {
+  cursor: pointer;
+
+  &:hover {
+    color: #6f6b7d;
+  }
+  &:active {
+    // scale 1.2
+    transform: scale(1.2);
+
+  }
+}

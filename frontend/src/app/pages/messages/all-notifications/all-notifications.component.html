@@ -1,0 +1,46 @@
+<app-content-header [contentHeader]="contentHeader"></app-content-header>
+<div class="card mb-25">
+    <ul ngbNav #navWithIcons="ngbNav" class="nav-tabs m-0">
+        <li ngbNavItem>
+            <a ngbNavLink (click)="tabClick('all')"><i class="fa-regular fa-envelopes-bulk"></i>{{'All'|translate}}</a>
+        </li>
+        <li ngbNavItem>
+            <a ngbNavLink (click)="tabClick('unread')"><i class="fa-solid fa-bell-slash"></i>{{'Unread'|translate}}</a>
+        </li>
+    </ul>
+</div>
+<div class="card text-left" *ngFor="let item of notificationsData | filter:filter:'read'">
+    <div class="card-body p-1">
+        <h4 class="card-title mb-0">{{item.message?.title}}
+        </h4>
+        <small class="text-muted" *ngIf="item.message && !isString(item.message)">
+            {{'From'|translate}}: {{item?.message?.send_by?.first_name}}
+            {{item?.message?.send_by?.last_name}}({{item?.message?.send_by?.email}})
+        </small>
+        <p class="card-text mt-1" [innerHTML]="item.message? item.message?.content: '' | striphtml"></p>
+        <p class="text-center" *ngIf="item.message && isString(item.message)">{{item.message | translate}}</p>
+        <small class="text-muted"> {{item.message?.created_at |date:'yyyy-MM-dd hh:mm'}}</small>
+    </div>
+    <div class="modal-footer justify-content-start p-50" *ngIf="item.message?.attachments">
+        <div class="card attachment" *ngFor="let attachment of item.message?.attachments">
+            <div class="card-body border border-secondary rounded p-50">
+                <h6>
+                    {{(attachment.display_name.length>50)? (attachment.display_name | slice:0:50)+'...':
+                    attachment.display_name }}
+                </h6>
+                <div class="row">
+                    <div class="col">
+                        <p class="text-muted">{{attachment.size/ 1024 / 1024 | number: '.2'}}MB</p>
+                    </div>
+                    <div class="col">
+                        <a target="_blank" class="btn btn-flat-secondary p-50 float-right" [href]="attachment.web_path"
+                            [download]="attachment.display_name">
+                            <i class="fa-duotone fa-download"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

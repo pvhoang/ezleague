@@ -1,0 +1,70 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <!-- content-header component -->
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+
+    <div class="row mb-1">
+      <!-- ng select season -->
+      <div class="col">
+        <label for="season">{{ 'Season' | translate }}</label>
+        <ng-select [searchable]="true" [clearable]="false" placeholder="{{'Select Season'|translate}}" [(ngModel)]="season"
+          (change)="onChangeSeason($event)">
+          <ng-option *ngFor="let season of seasons" [value]="season">{{ season.name | translate }}
+          </ng-option>
+        </ng-select>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="mt-1">
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table row-border hover">
+          <thead>
+            <tr>
+              <th>
+                {{ 'Club' | translate }}
+              </th>
+              <th>
+                <!-- on select club and group show team list -->
+                <div *ngIf="false" class="row mb-1">
+                  <!-- ng select club -->
+                  <div class="col-6">
+                    <ng-select [searchable]="true" [clearable]="true" placeholder="Select Club"
+                      [(ngModel)]="selectedClub" (change)="onSelectedClubChange($event)">
+                      <ng-option *ngFor="let club of clubs" [value]="club">{{ club.code }}
+                      </ng-option>
+                    </ng-select>
+                  </div>
+                  <div class="col-6">
+                    <ng-select [searchable]="true" [clearable]="true" [placeholder]="'Select Group'"
+                      [(ngModel)]="selectedGroup">
+                      <ng-option *ngFor="let group of groups" [value]="group.id" name="group">
+                        {{ group.name }}
+                      </ng-option>
+                    </ng-select>
+                  </div>
+                </div>
+
+                {{ 'Age Group' | translate }}
+              </th>
+              <th>
+                {{ 'Team' | translate }}
+              </th>
+              <th>
+                {{ 'PDF Link' | translate }}
+              </th>
+              <th>
+                {{ 'Submitted' | translate }}
+              </th>
+              <th>
+                {{ 'Status' | translate }}
+              </th>
+              <th>
+                {{ 'Action' | translate }}
+              </th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

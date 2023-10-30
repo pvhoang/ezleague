@@ -1,0 +1,299 @@
+<div id="p5Canvas" class="hide-element" #p5Canvas>
+    <!-- <canvas class="hide-element" #canvasElement></canvas>
+    <video class="hide-element" #videoElement muted autoplay> 
+    </video>-->
+</div>
+<div class="broadcast">
+    <div class="row">
+        <div class="col-12 col-sm-5 pr-0">
+            <div class="card d-flex flex-column">
+                <vg-player tourAnchor="video-broadcast">
+                    <div class="d-none card team-score" #scoreboardElement>
+                        <div class="flex-row">
+                            <img class="avatar" id="home_logo" [src]="match_info?.home_team?.club?.logo" alt="team logo"
+                                width="25" height="25">
+                            <div class="match-info__team__name d-inline mr-25">{{match_info?.home_team?.name}}</div>
+                            <!-- score -->
+                            <div class="badge badge-secondary float-right">{{match.homeGoal}}</div>
+                        </div>
+
+                        <div class="flex-row">
+                            <!-- score -->
+                            <img class="avatar" id="away_logo" [src]="match_info?.away_team?.club?.logo" alt="team logo"
+                                width="25" height="25">
+                            <div class="match-info__team__name d-inline mr-25">{{match_info?.away_team?.name}}</div>
+                            <div class="badge badge-secondary float-right">{{match.awayGoal}}</div>
+                        </div>
+                    </div>
+                    <vg-controls [vgAutohide]="true" [vgAutohideTime]="1.5">
+                        <button class="btn btn-icon btn-flat-dark" *ngIf="isOverlay">
+                            <span class="text-video"><i class="fa-solid fa-circle fa-beat fa-2xs mr-50"
+                                    style="color: #f71818;"></i> Live</span>
+                        </button>
+                        <!-- <vg-play-pause></vg-play-pause> -->
+                        <!-- <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display> -->
+                        <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+                        <button (click)="modalOpen(modalSetting)" class="btn btn-icon btn-flat-dark">
+                            <i class="fa-duotone fa-gear" style="color: white;"></i>
+                        </button>
+                        <ng-template #modalSetting let-modal>
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel1">Settings</h4>
+                                <button type="button" class="close" (click)="modal.dismiss('Cross click')"
+                                    aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body" tabindex="0" ngbAutofocus>
+                                <label for="select-camera">{{'Camera'| translate}}</label>
+                                <!-- list select camera -->
+                                <ng-select id="select-camera" [clearable]="false" [searchable]="false"
+                                    [(ngModel)]="current_camera" (change)="onSelectedCameraChange($event)">
+                                    <ng-option *ngFor="let camera of cameralist"
+                                        [value]="camera.value">{{camera.label}}</ng-option>
+                                </ng-select>
+                                <label for="select-micro" class="mt-1">{{'Microphone'| translate}}</label>
+                                <!-- list mics -->
+                                <ng-select id="select-micro" [clearable]="false" [searchable]="false"
+                                    [(ngModel)]="current_mic" (change)="onSelectedMicChange($event)">
+                                    <ng-option *ngFor="let mic of miclist" [value]="mic.value">{{mic.label}}</ng-option>
+                                </ng-select>
+                            </div>
+                        </ng-template>
+                        <vg-fullscreen></vg-fullscreen>
+                    </vg-controls>
+
+                    <video [vgMedia]="media" [id]="video_element_id" #media #videoElement2 muted autoplay playsinline>
+                    </video>
+                </vg-player>
+            </div>
+
+            <div class="card mt-50 pt-25 pb-50 mb-50 d-flex flex-column align-items-center">
+                <div class="team-info d-flex flex-row align-items-center" tourAnchor="match-info">
+                    <div class="match-info__team d-flex flex-row align-items-center   " style="gap:2em">
+                        <img class="avatar" [src]="match_info?.home_team?.club?.logo" alt="team logo" width="30"
+                            height="30">
+                        <div class="match-info__team__name">{{match_info?.home_team?.name}}</div>
+                        <!-- score -->
+                        <div class="score-home ">{{match.homeGoal}}</div>
+                    </div>
+                    -
+                    <div class="match-info__team d-flex flex-row align-items-center " style="gap:2em">
+                        <!-- score -->
+                        <div class="score-away ">{{match.awayGoal}}</div>
+                        <div class="match-info__team__name">{{match_info?.away_team?.name}}</div>
+                        <img class="avatar" [src]="match_info?.away_team?.club?.logo" alt="team logo" width="30"
+                            height="30">
+                    </div>
+                </div>
+
+                <table class="goal-table">
+                    <!-- <tr>
+                        <td>
+                            <button class="btn btn-outline-dark  btn-block btn-goal p-50" (click)="addGoal('home')">
+                                <i class="fa-regular fa-futbol"></i>
+                                Goal
+                            </button>
+                        </td>
+                        <td>
+                            <button class="btn btn-outline-dark btn-block btn-goal p-50" (click)="addGoal('away')">
+                                <i class="fa-regular fa-futbol"></i>
+                                Goal
+                            </button>
+                        </td>
+                    </tr> -->
+                    <tr>
+                        <td>
+                            <button class="btn btn-outline-secondary btn-block btn-event p-50"
+                                (click)="openModalUpdataEvent(match_info?.home_team?.id)" tourAnchor="addEventHome">
+                                <i class="fa-regular fa-cards-blank"></i>
+                                + Add Event
+                            </button>
+
+                        </td>
+                        <td>
+                            <button class="btn btn-outline-secondary btn-block btn-event p-50"
+                                (click)="openModalUpdataEvent(match_info?.away_team?.id)" tourAnchor="addEventAway">
+                                <i class="fa-duotone fa-futbol"></i>
+                                + Add Event
+                            </button>
+
+                        </td>
+
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+        <div class="col-sm-7 col-12">
+            <div class="p-50 count-up mb-50 card ">
+                <div class="row">
+                    <div class="col-12 text-center ">
+                        <button class="float-left btn btn-flat-dark p-25" tourAnchor="back" backButton>
+                            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                            {{'Back' | translate}}
+                        </button>
+                        <span style="margin-left: -60px;">
+                            Count Up
+                        </span>
+                    </div>
+                </div>
+                <div class="row d-flex justify-content-center align-items-center" style="gap:5em">
+                    <!-- period -->
+                    <div class="period d-flex flex-column align-items-center">
+                        <div class="period__name">
+                            Period
+                        </div>
+                        <div class="period__number">
+                            {{match.half}}
+                        </div>
+                    </div>
+
+                    <div class="timer d-flex flex-row align-items-center" style="margin-left: -5em">
+                        <button class="btn btn-edit" tourAnchor="setTimer" (click)="modalOpen(modalTimer)"><i
+                                class="fa fa-edit"></i>
+                        </button>
+                        <ng-template #modalTimer let-modal>
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel1">Set Timer</h4>
+                                <button type="button" class="close" (click)="modal.dismiss('Cross click')"
+                                    aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body" tabindex="0" ngbAutofocus>
+                                <div class="row">
+                                    <div class="col text-right">
+                                        <core-touchspin #minutes [numberValue]="timer.minutes" [stepValue]="1"
+                                            [minValue]="0" [maxValue]="200"></core-touchspin>
+                                    </div>
+                                    <div class="col-auto m-auto">
+                                        <i class="fa-solid fa-colon"></i>
+                                    </div>
+                                    <div class="col">
+                                        <core-touchspin [numberValue]="timer.seconds" [stepValue]="1" [minValue]="0"
+                                            [maxValue]="59" #seconds></core-touchspin>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary mr-1"
+                                    (click)="editTimer(minutes.numberValue, seconds.numberValue,modal)">
+                                    Save
+                                </button>
+                            </div>
+                        </ng-template>
+                        <h1 class="text-primary" id="timer-count">
+                            {{ timer.minutes | number: '2.0' }}:{{ timer.seconds | number: '2.0' }}
+                        </h1>
+                    </div>
+
+                    <button class="btn btn-danger btnCount rounded-circle" tourAnchor="play-pause"
+                        (click)="toggleCounting(!match.isCounting)" [disabled]="match.half==0">
+                        <i class="fa {{match.isCounting?'fa-pause' : 'fa-play'}}"></i>
+                    </button>
+
+                </div>
+
+                <div class="m-2 period row d-flex justify-content-center align-items-center" style="gap:2em">
+                    <button class="btn btn-primary btn-period" tourAnchor="start-period"
+                        (click)="actionPeriod('start', $event)" [disabled]="match.half==5 || match.isCounting==true">
+                        <i class="fa-regular fa-flag-checkered"></i>
+                        Start Period
+                    </button>
+                    <button class="btn btn-primary btn-period" tourAnchor="end-period"
+                        (click)="actionPeriod('end', $event)" [disabled]="match.half==0 || match.isCounting==false">
+                        <i class="fa-sharp fa-regular fa-stopwatch"></i>
+                        End Period
+                    </button>
+                </div>
+            </div>
+
+            <div class="mt-25 timeline card">
+                <table class=" table ">
+                    <thead>
+                        <tr class="thead">
+                            <th scope="col" class="text-center">
+                                Home
+                            </th>
+                            <th scope="col" class="text-center">
+                                Timeline
+                            </th>
+                            <th scope="col" class="text-center">
+                                Away
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of match_details">
+                            <td scope="row" class="p-50  text-left">
+                                <div class="row p-0" *ngIf="item.type_team=='home'">
+                                    <div class="col-auto p-0 pl-50">
+                                        <button type="button" class="btn btn-sm btn-icon rounded-circle p-0 pl-25 mr-50"
+                                            style="font-size: 25px;">
+                                            <i class="fa-light fa-circle-xmark" (click)="removeEvent(item)"></i>
+                                        </button>
+                                    </div>
+                                    <div class="col pt-25 pr-50">
+                                        {{item.player?.user?.first_name}} {{item.player?.user?.last_name}}
+                                    </div>
+                                    <div class="col-auto pt-25 p-0">
+                                        <i [class]="getIconByType(item.type)"></i>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-50 text-center">
+                                {{item.time}}'
+                            </td>
+                            <td class="p-50 text-right">
+                                <div class="row p-0" *ngIf="item.type_team=='away'">
+                                    <div class="col-auto pt-25 p-0">
+                                        <i [class]="getIconByType(item.type)"></i>
+                                    </div>
+
+                                    <div class="col pt-25 pl-50">
+                                        {{item.player?.user?.first_name}} {{item.player?.user?.last_name}}
+                                    </div>
+                                    <div class="col-auto p-0 pr-50">
+                                        <button type="button" class="btn btn-sm btn-icon rounded-circle p-0 pr-25 ml-50"
+                                            style="font-size: 25px;">
+                                            <i class="fa-light fa-circle-xmark" (click)="removeEvent(item)"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+    <div class="row card d-flex flex-row align-items-center " style="gap:2em; margin-bottom: 0">
+        <div class="col-auto text-center">
+            <button (click)="toggleStream()" tourAnchor="start-stop"
+                class="btn btn-flat-dark round pt-50 pb-50 pr-50 pl-25 m-1">
+                <i class="fa-regular {{isOverlay?'fa-circle-stop':'fa-circle-play'}}  fa-2xl"
+                    style="color: #fb4646;"></i>
+                <span class="ml-1">{{isOverlay?'Stop':'Start'}}</span>
+            </button>
+        </div>
+        <div class="col-auto text-center">
+            <div *ngIf="isOverlay">
+                <i class="fa-solid fa-circle fa-beat mr-50" style="color: #f71818;"></i>
+                <span>{{streamingTime}}</span>
+            </div>
+
+        </div>
+        <div class="col text-center">
+            <!-- battery -->
+            <div class="battery float-right d-flex flex-row align-items-center" style="gap:0.5em" *ngIf="batteryInfo">
+                <div class="align-middle">
+                    {{batteryInfo?.batteryLevel.toFixed(2) * 100}}% {{batteryInfo?.isCharging?'Charging':''}}
+                </div>
+                <i [ngClass]="getBatteryIcon(batteryInfo?.batteryLevel.toFixed(2) * 100)"></i>
+            </div>
+        </div>
+    </div>
+</div>
+<tour-step-template></tour-step-template>

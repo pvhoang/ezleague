@@ -1,0 +1,189 @@
+.stream-zones {
+    overflow-x: scroll;
+    white-space: nowrap;
+}
+
+.live-info{
+    button{
+        width: fit-content;
+        height: fit-content;
+        padding: 5px;
+        white-space: nowrap;
+        max-width: 100%;
+    }
+   
+}
+
+.row {
+    display: flex;
+    align-items: center;
+}
+
+.card {
+    max-width: 100%;
+    position: relative;
+    margin: 8px auto 8px auto;
+    height: auto;
+    width: max-content;
+    font-size: 10pt;
+    left: 0px;
+    top: 0px;
+    border-radius: 6px;
+    padding: 10px;
+
+}
+
+.card-sm {
+    width: 149px;
+}
+
+.card-body {
+    position: relative;
+}
+
+.flex-nowrap {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
+
+.header-tag {
+    font-family: Public Sans;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 23px;
+    letter-spacing: 0em;
+    text-align: left;
+
+}
+
+.live-info {
+    position: absolute;
+    z-index: 1;
+    background: transparent;
+    left: 10px;
+    top: 10px;
+    right: 10px;
+}
+
+.live-detail {
+    position: absolute;
+    z-index: 1;
+    background: transparent;
+    // make bottom
+    bottom: 10px;
+    left: 10px;
+
+    .league-name {
+        margin: 2px;
+        font-family: Public Sans;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 16px;
+        letter-spacing: 0em;
+        text-align: left;
+        color: #FFFFFF;
+        text-shadow: 0 0 3px #000000;
+    }
+
+    .team-versus {
+        margin: 2px;
+        color: white;
+        text-shadow: 0 0 3px #000000;
+        // border text
+        width: 100%;
+    }
+
+}
+
+div {
+    // not show scroll bar
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+
+    /* Firefox */
+    // chrome
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+
+
+.all-matches {
+    div.card{
+        width: 150px;
+        height: 140px;  
+    }
+   
+    div.card .title-img {
+        max-width: 100%;
+        height: 100%;
+        /* The following may be needed if there's still a wierd looking 2-3px gap at the bottom of the image in some browsers: */
+    }
+
+    .header-tag{
+        font-family: Public Sans;
+        font-size: 10px;
+        font-weight: 700;
+        line-height: 23px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+
+    // .live-detail {
+    //     position: absolute;
+    //     z-index: 1;
+    //     background: transparent;
+    //     left: 10px;
+    //     top: 10px;
+    //     right: 10px;
+    //     font-size: 10px;
+    //     .btn-sm{
+    //         width: 50% !important;
+    //         height: 30px !important;
+    //     }
+    // }
+    
+   
+}
+
+.broadcast-modal {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+    text-shadow: 0 0 10px black;
+
+}
+
+app-broadcast{
+    padding:10%;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+ .card {
+    width: 400px;
+    height: 180px;
+    margin: 10px 10px 10px 10px;
+}
+
+ .card .col{
+    width: 50px;
+    height: 70px;
+}
+
+.card .img{
+   max-width: 100%;
+   height: 50px;
+}

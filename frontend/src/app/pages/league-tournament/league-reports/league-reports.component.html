@@ -1,0 +1,65 @@
+<div class="content-wrapper container-xxl p-0">
+	<div class="content-body">
+		<!-- content-header component -->
+		<app-content-header [contentHeader]="contentHeader"></app-content-header>
+
+		<div class="row mb-1">
+			<!-- ng select season -->
+			<div class="col-6">
+				<label for="season">{{'Season'|translate}}</label>
+				<ng-select [searchable]="true" [clearable]="true" placeholder="{{'Select Season'|translate}}" [(ngModel)]="seasonId"
+					(change)="onSelectSeason($event)">
+					<ng-option *ngFor="let season of seasons" [value]="season.id">{{ season.name | translate }}
+					</ng-option>
+				</ng-select>
+			</div>
+			<div class="col-6">
+				<label for="club">{{'Club'|translate}}</label>
+				<ng-select [clearable]="false" [clearable]="true" placeholder="{{'Select Club'|translate}}" [(ngModel)]="clubId"
+					(change)="onSelectClub($event)">
+					<ng-option *ngFor="let club of clubs" [value]="club.id">
+						{{ club.code | translate }}
+					</ng-option>
+				</ng-select>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-12">
+				<div class="card">
+					<div class="pt-2">
+						<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+							class="table border row-border hover">
+							<thead>
+								<tr>
+									<th>{{'League/Knockout' | translate}}</th>
+									<th>{{'Date' | translate }}</th>
+									<th>{{'Start time' | translate}}</th>
+									<th>{{'End time' | translate}}</th>
+									<th>{{'Location' | translate }}(HKD)</th>
+									<th>{{'User' | translate}}</th>
+									<th>{{'Home' | translate}}</th>
+									<th>{{'vs' | translate}}</th>
+									<th>{{'Away' | translate}}</th>
+									<th>{{'Home' | translate}}</th>
+									<th></th>
+									<th>{{'Away' | translate}}</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<core-sidebar class="modal modal-slide-in sidebar-todo-modal fade" [name]="table_name" overlayClass="modal-backdrop">
+	<app-editor-sidebar [table]="dtElement" [fields]="fields" [params]="params">
+	</app-editor-sidebar>
+</core-sidebar>
+
+<ng-template #rowActionBtn let-data="adtData" let-emitter="captureEvents">
+	<app-btn-dropdown-action [actions]="rowActions" [data]="data" (emitter)="emitter($event)"
+		btnStyle="font-size:15px;color:black!important"></app-btn-dropdown-action>
+</ng-template>

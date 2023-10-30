@@ -1,0 +1,192 @@
+.broadcast {
+    height: 100vh;
+    // overflow: hidden;
+    width: 100%;
+    padding: 0 5px 0 5px;
+    padding-bottom: 10px;
+
+    video {
+        width: 100%;
+    }
+}
+
+.team-score .score {
+    height: fit-content;
+    width: 20px;
+    text-align: center;
+    padding: 0px;
+    margin-left: 1em;
+}
+
+.card {
+    margin: 0;
+}
+
+.team-score {
+    font-family: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    margin: 5px;
+    position: absolute;
+    width: auto;
+    height: auto;
+    padding: 2px;
+    left: 0;
+    z-index: 1;
+}
+
+.count-up {
+    .btnCount {
+        position: relative;
+        width: 50px;
+        padding: 0;
+        height: 50px;
+    }
+
+}
+
+.timeline {
+    height: calc(14vw *0.9);
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    table {
+
+        thead,
+        .thead {
+            //    sticky
+            position: sticky;
+            top: 0;
+            background-color: #fff;
+            z-index: 1;
+        }
+    }
+
+    @media (min-width: 768px) {
+        height: calc(12vw * 1.1);
+    }
+
+    @media (min-width: 992px) {
+        height: calc(12vw * 1.2);
+    }
+
+    @media (min-width: 1300px) {
+        height: calc(12vw * 1.35);
+    }
+}
+
+.goal-table td {
+    padding: 10px;
+    font-size: calc(14vw * 0.05);
+}
+
+.goal-table td .btn-goal:active {
+    background-color: #24f111;
+    // animation blink for button
+    animation: shake 0.5s linear infinite alternate;
+}
+
+
+.goal-table td .btn-event:active {
+    background-color: yellow;
+    // animation blink for button
+    // shake 
+    animation: blink 0.5s linear
+}
+
+.blink-class {
+    // zoom
+    transform: scale(1.5);
+    animation: smallshake 0.5s linear;
+}
+
+@keyframes smallshake {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes blink {
+    0% {
+        color: yellow
+    }
+
+    //    ZOOM
+    100% {
+        color: black
+    }
+}
+
+
+
+@keyframes shake {
+    0% {
+        transform: translate(1px, 1px) rotate(15deg);
+    }
+
+    10% {
+        transform: translate(-1px, -2px) rotate(-1deg);
+    }
+
+    20% {
+        transform: translate(-3px, 0px) rotate(20deg);
+    }
+
+    30% {
+        transform: translate(3px, 2px) rotate(0deg);
+    }
+
+    40% {
+        transform: translate(1px, -1px) rotate(1deg);
+    }
+
+    50% {
+        transform: translate(-1px, 2px) rotate(-20deg);
+    }
+
+    60% {
+        transform: translate(-3px, 1px) rotate(0deg);
+    }
+
+    70% {
+        transform: translate(3px, 1px) rotate(-15deg);
+    }
+
+    80% {
+        transform: translate(-1px, -1px) rotate(1deg);
+    }
+
+    90% {
+        transform: translate(1px, 2px) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(1px, -2px) rotate(-1deg);
+    }
+}
+
+.timer .btn-edit:active {
+    color: aliceblue;
+    // animation blink for button
+    animation: smallshake 0.5s linear;
+}
+
+
+
+table.timeline button {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    font-size: 14pt
+}
+
+// animation for button
+table.timeline button:active {
+    background-color: rgb(212, 225, 225);
+}

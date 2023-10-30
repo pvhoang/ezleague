@@ -3,10 +3,10 @@ version: "3.8"
 services: 
 
   nginx:
-    image: eztest-nginx
-    build:
-      context: .
-      dockerfile: dockerfiles/nginx.dockerfile
+    image: ezleague-nginx
+    build: 
+      context: nginx
+      dockerfile: ../dockerfiles/nginx.dockerfile
     ports: 
       - '8000:80'
     volumes: 
@@ -17,18 +17,18 @@ services:
       - mysql
   
   backend:
-    image: eztest-backend
+    image: ezleague-backend
     build:
-      context: .
-      dockerfile: dockerfiles/backend.dockerfile
+      context: backend
+      dockerfile: ../dockerfiles/backend.dockerfile
     volumes: 
       - ./backend:/var/www/html:delegated
 
   frontend:
-    image: eztest-frontend
+    image: ezleague-frontend
     build:
-      context: .
-      dockerfile: dockerfiles/frontend.dockerfile
+      context: frontend
+      dockerfile: ../dockerfiles/frontend.dockerfile
     working_dir: /usr/src/app
     volumes: 
       - ./frontend/:/usr/src/app 
@@ -44,39 +44,19 @@ services:
       MYSQL_ROOT_PASSWORD: secret
       MYSQL_ROOT_HOST: '%'
       SERVICE_NAME: mysql
-  
+    volumes:
+      - ./dbdata:/var/lib/mysql
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     environment:
-      MYSQL_DATABASE: homestead
-      MYSQL_USER: homestead
-      MYSQL_PASSWORD: secret
-      MYSQL_ROOT_PASSWORD: secret
-      MYSQL_ROOT_HOST: '%'
-      SERVICE_NAME: mysql
+      PMA_ARBITRARY: 1
+      PMA_USER: homestead
+      PMA_PASSWORD: secret
+      PMA_HOST: mysql
+      PMA_PORT: 3306
     ports:
       - "7000:80"
     links:
       - mysql:mysql
 
-  composer:
-    build:
-      context: .
-      dockerfile: dockerfiles/composer.dockerfile
-    volumes: 
-      - ./backend:/var/www/html
-
-  artisan:
-    build:
-      context: .
-      dockerfile: dockerfiles/backend.dockerfile
-    volumes: 
-      - ./backend:/var/www/html
-    entrypoint: ["php", "/var/www/html/artisan"]
-
-  npm:
-    image: node:14
-    working_dir: /var/www/html
-    entrypoint: ["npm"]
-    volumes: 
-      - ./backend:/var/www/html

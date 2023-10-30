@@ -1,0 +1,57 @@
+version: '3.8'
+services:
+
+    # Application & web server
+    app:
+        image: mchoang98/ezleague-server:latest
+        container_name: app
+        working_dir: /var/www/html
+        volumes:
+            # Mount the application code from the host
+            - .:/var/www/html
+        depends_on:
+            - database
+        ports:
+            - "8000:80"
+        command: bash -c "
+            composer install --ignore-platform-reqs &&
+            php artisan key:generate &&
+            php artisan migrate:fresh &&
+            php artisan passport:install &&
+            php artisan db:seed
+        
+
+
+    # Database
+    database:
+        platform: linux/x86_64
+        image: mysql:5.7
+        volumes:
+            - dbdata:/var/lib/mysql
+            - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+        environment:
+            - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+            - MYSQL_DATABASE=${DB_DATABASE}
+            - MYSQL_USER=${DB_USERNAME}
+            - MYSQL_ALLOW_EMPTY_PASSWORD= true
+        ports:
+            - "33061:3306"
+
+    # Database management
+    # Database management
+    pma:
+        platform: linux/x86_64
+        image: phpmyadmin:5.1
+        environment:
+            PMA_ARBITRARY: "1"
+            PMA_HOST: ${DB_HOST}
+            PMA_USER: ${DB_USERNAME}
+            PMA_PASSWORD: ${DB_PASSWORD}
+            PMA_PORT: ${DB_PORT}
+        depends_on:
+            - database
+        ports:
+            - "8888:80"
+
+volumes:
+    dbdata:

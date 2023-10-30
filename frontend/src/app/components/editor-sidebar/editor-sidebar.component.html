@@ -1,0 +1,56 @@
+<div class="slideout-content">
+  <!-- Modal to CRUD datatables-->
+  <div class="modalsd modal-slide-in sdfade">
+    <div class="modal-dialog dialog-full">
+      <form
+        class="modal-content pt-0"
+        [formGroup]="form"
+        (ngSubmit)="submit(model)"
+        #formDirective="ngForm"
+      >
+        <div class="modal-header mb-1 text-primary text-center">
+          <div class="btn-back" (click)="close()">
+            <i class="fa fa-chevron-left"></i>
+            <span> {{ 'Back' | translate }}</span>
+          </div>
+          <div class="col">
+            <b class="mr-3 h4 title-editor text-capitalize">
+              {{ new_params.title[new_params.action] | translate }}
+            </b>
+          </div>
+        </div>
+
+        <div class="modal-body no-margin">
+          <ngb-alert
+            *ngIf="rows_selected.length > 1"
+            [type]="'warning'"
+            [dismissible]="false"
+          >
+            <h4 class="alert-heading">{{ 'Warning' | translate }}</h4>
+            <div class="alert-body">
+              {{'You are editing multiple rows! Please be careful, data will be updated for all selected rows.'| translate}}
+            </div>
+          </ngb-alert>
+          <formly-form
+            [form]="form"
+            [fields]="fields"
+            [model]="model"
+          ></formly-form>
+          <div class="row justify-content-end">
+            <div class="col-4">
+              <button type="button" class="btn btn-secondary" (click)="close()">
+                {{ new_params.button[new_params.action].cancel | translate }}
+              </button>
+            </div>
+            <div class="col-4">
+              <button type="submit" class="btn btn-primary">
+                {{ new_params.button[new_params.action].submit | translate }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- END Modal to CRUD datatables-->
+</div>

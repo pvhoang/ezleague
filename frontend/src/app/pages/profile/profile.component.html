@@ -1,0 +1,88 @@
+<div class="content-wrapper container-xxl p-0">
+    <div class="content-body">
+        <!-- content-header component -->
+        <app-content-header [contentHeader]="contentHeader"></app-content-header>
+
+        <div id="user-profile">
+            <!-- profile header -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card profile-header mb-1">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-auto mb-1">
+                                    <div class="profile-img">
+                                        <img src="assets/images/avatars/profile-avatar.jpg" style="width: 80px;"
+                                            class="rounded img-fluid" alt="Card image" />
+                                    </div>
+                                </div>
+                                <!-- profile title -->
+                                <div class="col text-dark mb-1">
+                                    <h2>
+                                        {{ currentUser?.first_name + ' ' + currentUser?.last_name }}
+                                    </h2>
+                                    <h5>
+                                        <i class="fa-solid fa-envelope"></i>
+                                        {{ currentUser?.email }}
+                                    </h5>
+                                    <h5>
+                                        <i class="fa-solid fa-user-gear"></i>
+                                        {{ currentUser?.role?.name |translate }}
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- tabs pill -->
+
+            <div class="profile-tabs d-flex justify-content-between flex-wrap mt-1 mt-md-0">
+                <ul ngbNav #navFilled="ngbNav" class="nav nav-pills">
+                    <li ngbNavItem>
+                        <a class="nav-link font-weight-bold pl-1 pr-1" ngbNavLink>
+                            <i class="fa-regular fa-user"></i>
+                            <span>{{'Profile' | translate }}</span>
+                        </a>
+
+                        <ng-template ngbNavContent>
+                            <edit-profile [user]="currentUser"></edit-profile>
+                        </ng-template>
+                    </li>
+                    <li ngbNavItem>
+                        <a class="nav-link font-weight-bold pl-1 pr-1" ngbNavLink>
+                            <i class="fa-regular fa-lock"></i>
+                            <span>{{'Security' | translate }}</span>
+                        </a>
+                        <ng-template ngbNavContent>
+                            <profile-sercurity [user]="currentUser"></profile-sercurity>
+                        </ng-template>
+                    </li>
+                    <li ngbNavItem>
+                        <a ngbNavLink class="nav-link font-weight-bold pl-1 pr-1">
+                            <i class="fa-regular fa-bell"></i>
+                            <span>
+                                {{'Notifications' | translate}}
+                            </span>
+                        </a>
+                        <ng-template ngbNavContent>
+                            <profile-notification [club_list]="club_list" [fav_clubs]="fav_clubs" [user]="currentUser"
+                                [team_list]="team_list" (updateFavClub)="updateFavClub($event)"
+                                (updateFavTeam)="updateFavTeam($event)" [fav_teams]="fav_teams"
+                                [group_list]="group_list">
+                            </profile-notification>
+                        </ng-template>
+                    </li>
+                </ul>
+            </div>
+
+            <!--/ profile header -->
+
+            <!-- profile info section -->
+            <section id="profile-info">
+                <div [ngbNavOutlet]="navFilled" class="mt-2"></div>
+            </section>
+            <!--/ profile info section -->
+        </div>
+    </div>
+</div>

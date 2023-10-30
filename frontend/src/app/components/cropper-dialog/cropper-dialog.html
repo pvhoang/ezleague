@@ -1,0 +1,78 @@
+<div ly-dialog-content [lyPx]="0">
+  <!-- header -->
+  <div class="row align-items-center m-0 p-1" style="width: 100%">
+    <div class="col">
+      <h2 class="h4">{{'Crop Image'|translate}}</h2>
+    </div>
+    <div class="col-auto p-0">
+      <button
+        class="btn btn-icon btn-flat-dark p-0"
+        (click)="dialogRef.close()"
+      >
+        <i class="fas fa-times" style="font-size: 20px"></i>
+      </button>
+    </div>
+  </div>
+  <ly-img-cropper
+    [config]="myConfig"
+    [(scale)]="scale"
+    (ready)="ready = true"
+    (cleaned)="ready = false"
+    (minScale)="minScale = $event"
+    (cropped)="onCropped($event)"
+    (loaded)="onLoaded($event)"
+    (error)="onError($event)"
+  >
+    <span>{{'Drag and drop image' | translate}}</span>
+  </ly-img-cropper> 
+
+  <div [className]="classes.sliderContainer">
+    <div [class]="classes.slider">
+      <ly-slider
+        [thumbVisible]="false"
+        [min]="minScale"
+        [max]="1"
+        [(ngModel)]="scale"
+        (input)="onSliderInput($event)"
+        [step]="0.000001"
+        cdkFocusInitial
+      ></ly-slider>
+    </div>
+  </div>
+
+  <div *ngIf="ready">
+    <button (click)="cropper.zoomIn()" class="btn btn-icon btn-flat-dark">
+      <i class="fas fa-plus"></i>
+    </button>
+    <button (click)="cropper.zoomOut()" class="btn btn-icon btn-flat-dark">
+      <i class="fas fa-minus"></i>
+    </button>
+    <button (click)="cropper.center()" class="btn btn-icon btn-flat-dark">
+      <i class="fa-regular fa-camera-viewfinder"></i>
+    </button>
+    <button (click)="cropper.rotate(-90)" class="btn btn-icon btn-flat-dark">
+      <i class="fa-regular fa-rotate-left"></i>
+    </button>
+    <button (click)="cropper.fit()" class="btn btn-icon btn-flat-dark">
+      {{'Fit' | translate}}
+    </button>
+    <button (click)="cropper.fitToScreen()" class="btn btn-icon btn-flat-dark">
+      {{'Fit to screen' | translate}}
+    </button>
+    <button (click)="cropper.setScale(1)" class="btn btn-icon btn-flat-dark">
+      1:1
+    </button>
+  </div>
+
+  <div class="row justify-content-end m-0 mt-1 pb-1" style="width: 100%">
+    <button (click)="dialogRef.close()" class="btn btn-danger mr-1">
+      {{'Cancel' | translate}}
+    </button>
+    <button
+      (click)="dialogRef.close(cropper.crop())"
+      class="btn btn-success mr-1"
+    >
+      {{'Done' | translate}}
+    </button>
+  </div>
+</div>

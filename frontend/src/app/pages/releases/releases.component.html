@@ -1,0 +1,8 @@
+<div class="card pt-1">
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table row-border hover">
+    </table>
+</div>
+<core-sidebar class="modal modal-slide-in sidebar-todo-modal fade" [name]="table_name" overlayClass="modal-backdrop">
+    <app-editor-sidebar [table]="dtElement" [fields]="fields" [params]="params" [new_model]="model">
+    </app-editor-sidebar>
+</core-sidebar>

@@ -1,0 +1,35 @@
+<div class="custom-file" *ngIf="hidden==false">
+    <input type="file" #fileInput [accept]="field.props.accept?field.props.accept:''" [multiple]="to.multiple"
+        class="custom-file-input" id="file" [formControl]="formControl" [formlyAttributes]="field"
+        (change)="onChange($event)" />
+    <label class="custom-file-label" for="file">{{'Choose file' | translate }}</label>
+</div>
+<small id="note" (click)="onClick($event)" class="text-muted">{{field.props.note?field.props.note:''}}</small>
+<!-- show image -->
+<div *ngIf="formControl.value && formControl.valid && field.props.accept?.includes('image') && uploaded"
+    class="mt-2 d-flex justify-content-center">
+    <div *ngFor="let value of values">
+        <img [src]="value" class="img-fluid" style="max-width: 250px;" />
+        <br>
+    </div>
+</div>
+<!-- show upload queue -->
+<div class="table-responsive">
+    <table class="table " *ngIf="values">
+        <tbody>
+            <tr *ngFor="let item of files; let i = index">
+                <td class="p-50 d-block text-truncate" style="max-width: calc( 100vw/ 3);">
+                    <strong>{{ item?.original_name }}</strong>
+                </td>
+                <td class="p-50" nowrap>
+                    {{ item?.size / 1024 / 1024 | number: '.2' }} MB
+                </td>
+                <td class="p-50 text-right">
+                    <button type="button" class="btn btn-icon btn-icon rounded-circle btn-flat-danger btn-sm " (click)="removeFile(i)">
+                        <i class="fas fa-times-circle    "></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

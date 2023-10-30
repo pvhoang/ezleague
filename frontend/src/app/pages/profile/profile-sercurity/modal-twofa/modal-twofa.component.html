@@ -1,0 +1,38 @@
+<div *ngIf="qrCodeUrl">
+    <div class="modal-header bg-white">
+        <h4 class="modal-title" id="label_follows">
+            {{ 'Two Factor Authentication' | translate }}
+        </h4>
+        <button type="button" class="close" aria-label="Close" (click)="close()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <form>
+        <div class="modal-body" tabindex="0" ngbAutofocus>
+            <p class="text-justify">
+                {{'To be able to authorize transactions you need to scan this QR Code with your Google Authentication
+                App
+                or
+                enter the secret key below' | translate}}
+            </p>
+            <div class="row d-flex justify-content-center">
+                <qrcode *ngIf="qrCodeUrl" [qrdata]="qrCodeUrl" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+            </div>
+            <ngb-alert type="warning" [dismissible]="false" *ngIf="secret">
+                <div class="alert-body"><strong>{{'Secret key'|translate }}: </strong> {{secret}}</div>
+            </ngb-alert>
+
+            <div class="form-group">
+                <input type="text" class="form-control" id="code" name="code" [(ngModel)]="code"
+                    placeholder="{{'Enter authentication code' | translate}}" required>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" (click)="enable2fa()">
+                {{ 'Enable' | translate }}
+            </button>
+        </div>
+    </form>
+</div>

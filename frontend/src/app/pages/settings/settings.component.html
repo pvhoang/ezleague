@@ -1,0 +1,74 @@
+<section class="vertical-wizard">
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+    <div id="stepper2" class="bs-stepper vertical vertical-wizard-example">
+        <div class="bs-stepper-header">
+            <div class="step" data-target="#system-versions">
+                <button type="button" class="step-trigger">
+                    <span class="bs-stepper-box"><i class="fa-solid fa-layer-group"></i></span>
+                    <span class="bs-stepper-label">
+                        <span class="bs-stepper-title">{{'System Versions'|translate}}</span>
+                        <span class="bs-stepper-subtitle">{{'iOS & Android version settings'|translate}}</span>
+                    </span>
+                </button>
+            </div>
+            <div class="step" data-target="#smtp-account">
+                <button type="button" class="step-trigger">
+                    <span class="bs-stepper-box"><i class="fa-regular fa-envelopes-bulk"></i></span>
+                    <span class="bs-stepper-label">
+                        <span class="bs-stepper-title">SMTP {{'Account'|translate }}</span>
+                        <span class="bs-stepper-subtitle">{{'Setup SMTP Account'|translate}}</span>
+                    </span>
+                </button>
+            </div>
+            <!-- <div class="step" data-target="#check-update">
+                <button type="button" class="step-trigger">
+                    <span class="bs-stepper-box"><i class="fa-solid fa-rotate"></i></span>
+                    <span class="bs-stepper-label">
+                        <span class="bs-stepper-title">{{'Update'|translate }}</span>
+                        <span class="bs-stepper-subtitle">{{'Check update version'|translate}}</span>
+                    </span>
+                </button>
+            </div> -->
+        </div>
+        <div class="bs-stepper-content">
+            <div id="system-versions" class="content">
+                <div class="content-header">
+                    <h5 class="mb-0">{{'System Versions'|translate}}</h5>
+                    <small>{{'iOS & Android version settings'|translate}}</small>
+                </div>
+                <form [formGroup]="version_form"
+                    (ngSubmit)="saveSetting(AppConfig.SETTINGS_KEYS.REQUIRED_VERSIONS,version_model,version_form)">
+                    <formly-form [model]="version_model" [fields]="version_fields" [options]="version_options"
+                        [form]="version_form"></formly-form>
+
+                    <div class="d-flex justify-content-between">
+                        <button type="submit" class="btn btn-primary btn-next" rippleEffect>
+                            <span class="align-middle">{{'Save'|translate}}</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div id="smtp-account" class="content">
+                <div class="content-header">
+                    <h5 class="mb-0">SMTP {{'Account'|translate }}</h5>
+                    <small class="text-muted">{{'Enter Your SMTP Account'|translate}}.</small>
+                </div>
+                <form [formGroup]="smtp_form"
+                    (ngSubmit)="saveSetting(AppConfig.SETTINGS_KEYS.SMTP,smtp_model,smtp_form)">
+                    <formly-form [model]="smtp_model" [fields]="smtp_fields" [options]="smtp_options"
+                        [form]="smtp_form"></formly-form>
+
+                    <div class="d-flex justify-content-between">
+                        <button type="submit" class="btn btn-primary btn-next" rippleEffect>
+                            <span class="align-middle">{{'Save'|translate}}</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- <div id="check-update" class="content">
+                <app-check-update></app-check-update>
+            </div> -->
+        </div>
+    </div>
+</section>

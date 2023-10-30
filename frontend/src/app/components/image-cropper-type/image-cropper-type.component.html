@@ -1,0 +1,18 @@
+<div>
+  <div class="row">
+    <div class="col-auto">
+      <aui-cropper-with-dialog [cropper_config]="configPhoto" (croppedImage)="onCropedPhoto($event)"
+        [disabled]="to.disabled" [useCropperDialog]="this.field.props.useCropperDialog"></aui-cropper-with-dialog>
+    </div>
+  </div>
+  <small *ngIf="field.props.note" id="note_{{field.key}}" (click)="onClick($event)"
+    class="text-muted">{{field.props.note?field.props.note:''}}</small>
+  <p><small id="image_test{{field.key}}" (click)="onClick($event)" *ngIf="!environment.production">Click to show image
+      for
+      testing</small></p>
+  <div class="row justify-content-center" *ngIf="image_src">
+    <div class="col-auto">
+      <img [src]="image_src" style="max-width: 250px" class="img-fluid" alt="" />
+    </div>
+  </div>
+</div>

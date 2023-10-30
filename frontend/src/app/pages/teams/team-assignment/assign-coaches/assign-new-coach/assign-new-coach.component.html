@@ -1,0 +1,54 @@
+<div>
+    <div class="modal-header">
+        <div>
+            <h4>
+                <span class="">{{'Assign coach to team' | translate}}</span>
+            </h4>
+        </div>
+
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close" (click)="onClose()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body" tabindex="0" ngbAutofocus>
+        <!-- Add new coach -->
+        <div *ngIf="showForm">
+            <h5>
+                <span>{{'Add new coach'| translate}}</span>
+            </h5>
+            <!-- Create a form with email, phone, first name and last name -->
+            <form [formGroup]="form" (ngSubmit)="onSubmit(model)">
+                <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">{{'Submit' | translate}}</button>
+                </div>
+            </form>
+        </div>
+        <!-- Suggestions -->
+        <div *ngIf="!showForm">
+            <div class="row">
+                <div class="col-12 col-sm-6">
+                    <h5>
+                        <span>{{ 'Suggestions' | translate}}</span>
+                    </h5>
+                </div>
+                <div class="col-12 col-sm-6">
+                    <button class="btn btn-sm btn-outline-primary float-right" (click)="onClickAddNewCoach()">
+                        <i class="fa fa-plus"></i>
+                        {{ 'Add new coach' | translate}}
+                    </button>
+                </div>
+            </div>
+            <table datatable [dtOptions]="dtOptions1" class="table border row-border hover">
+                <thead>
+                    <tr>
+                        <th class="text-capitalize">{{'Name' | translate}}</th>
+                        <th class="text-capitalize">{{'Email' | translate}}</th>
+                        <th class="text-capitalize">{{'Phone' | translate}}</th>
+                        <th class="text-capitalize">{{'Action' | translate}}</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <!-- content-header component -->
+    <!-- <app-content-header [contentHeader]="contentHeader"></app-content-header> -->
+
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">
+          <!-- {{ 'Team' | translate }} {{ currentTeam?.name }} -
+          {{ currentTeam?.group?.name }} -->
+        </h4>
+        <div class="d-flex flex-row btn_group mt-1">
+          <button
+            type="button"
+            class="btn btn-outline-primary btn-sm"
+            (click)="assignPlayerToTeam()"
+          >
+            <i class="fa fa-user-plus"></i>
+            {{ 'Assign Player' | translate }}
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary btn-sm"
+            (click)="submitTeamSheet()"
+          >
+            <!-- submit icon -->
+            <i class="fa fa-check"></i>
+            {{ 'Submit Teamsheet' | translate }}
+          </button>
+        </div>
+      </div>
+
+      <table
+        datatable
+        [dtOptions]="dtOptions"
+        class="table border row-border hover"
+      >
+        <thead>
+          <tr>
+            <th class="text-capitalize">{{ 'photo' | translate }}</th>
+            <th class="text-capitalize">{{ 'Player' | translate }}</th>
+            <th class="text-capitalize">{{ 'Year' | translate }}</th>
+            <th class="text-capitalize">{{ 'gender' | translate }}</th>
+            <th class="text-capitalize">{{ 'Action' | translate }}</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+</div>
+

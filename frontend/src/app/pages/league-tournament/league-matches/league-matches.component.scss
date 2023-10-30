@@ -1,0 +1,54 @@
+@import "@core/scss/core.scss";
+
+.team-name {
+    font-weight: bolder;
+    font-size: 1.1rem;
+}
+
+.ml-ava {
+    margin-left: 0.7rem;
+}
+
+.mr-ava {
+    margin-right: 0.7rem;
+}
+
+.td-team {
+    width: 150px;
+}
+
+@media (max-width: 576px) {
+    .team-name {
+        font-size: 0.9rem;
+    }
+
+    .ml-ava {
+        margin-left: 0.4rem;
+    }
+
+    .mr-ava {
+        margin-right: 0.4rem;
+    }
+
+    .td-team {
+        width: 150px;
+    }
+}
+
+@media (max-width: 300px) {
+    .team-name {
+        font-size: 0.7rem;
+    }
+
+    .ml-ava {
+        margin-left: 0.4rem;
+    }
+
+    .mr-ava {
+        margin-right: 0.4rem;
+    }
+
+    .td-team {
+        width: 100px;
+    }
+}

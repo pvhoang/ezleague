@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "976832086948",
+    "project_id": "ezactive-ezleague",
+    "storage_bucket": "ezactive-ezleague.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:976832086948:android:e492fa3d4aac2e3f65f731",
+        "android_client_info": {
+          "package_name": "com.ezactive.ezleague"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "976832086948-8p1mqjtirunr3amoekm7cdenleai7uk6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgSHvlvHr1ZcZYWeFkfjGFT1aKQocN4xc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "976832086948-8p1mqjtirunr3amoekm7cdenleai7uk6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

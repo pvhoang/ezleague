@@ -1,0 +1,29 @@
+<!-- <div class="content-header">
+    <h5 class="mb-0">{{'Update'|translate }}</h5>
+    <small class="text-muted">{{'Check update version'|translate}}.</small>
+</div> -->
+<div>
+    <div class="text-center">
+        <p>{{'Current Version'|translate}}: {{current_version}}.
+            <a (click)="checkUpdateVersion()" href="javascript:void(0)">
+                {{'Check Update'|translate}}
+                <span *ngIf="_loadingService.buttonLoading" class="spinner-border spinner-border-sm mr-1"></span>
+                <i *ngIf="!_loadingService.buttonLoading" class="fa-solid fa-rotate"></i>
+            </a>
+        </p>
+        <!-- <button class="btn btn-primary btn-next" rippleEffect (click)="reset()">
+            <span class="align-middle">{{'Reset'|translate}}</span>
+        </button> -->
+        <p *ngIf="updated_at">{{'Last updated at'|translate}}: {{updated_at}}</p>
+        <p [innerHTML]="message_check_update"></p>
+        <div class="progress-wrapper mb-1" *ngIf="download_progress>0">
+            <div class="mb-25">{{'Downloading'}}...&hellip; {{download_progress}}%</div>
+            <ngb-progressbar type="primary" [value]="download_progress" [striped]="true"
+                [animated]="true"></ngb-progressbar>
+        </div>
+        <button *ngIf="available_versions.length > 0 && isNativePlatform" type="submit" class="btn btn-primary btn-next"
+            rippleEffect (click)="updateVersion()">
+            <span class="align-middle">{{'Update'|translate}}</span>
+        </button>
+    </div>
+</div>

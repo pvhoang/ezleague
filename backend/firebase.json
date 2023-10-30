@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "ezactive-ezleague",
+  "private_key_id": "4054b3560582a5870df0ba2bd68503b0ffd32f63",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCoN4CrlOEOtGux\nwYW0wk68/YrgiV86PFvccOtUz7KM9cwgV3U03p5xxxG1TbB447K+MwEefy++04YQ\noX/3FCej37dVnLhIo3d9I1gIVgjPya2qkzKFz2lT903anbWLi9DQswZ2OM6hT0dS\nj3h9s/ckNs2h+OSCpCdBknWmzQRkblMaIZDVO+LvxAQgMsa+XQqDT1+TPofGikgS\nsakP1TVMB0ZteWdN/eWy/bmhubtp/OHnRSMkySrjXIKtd11AJOtkYtBR2SeSmL9Y\n7D06h1IKdfTilaPqkRpJR8u6a1Nc+NviMCTk9+Qmkns+njYk3ZKXlgq0A1DozY49\nCKvCiZ+1AgMBAAECggEAU8dQziPX8vroqB85+EzN6lJcWHgSdW6aUa/rhNHsm0fP\n4kuslChLwV7j8ug+e/brjs7YP9gYb3Hp016b3PKsy3EgXgMvxP2lBS4VKhGvUc2g\nMNQe1YX3b1o77CWfxWBdH5QKI9cnEi/p1bSezfxTmjWxNHpBVM9svbuz3N8+0MVS\ngBO1MF2WRs3AHC5IsReA90CMwc64PSqIKQrAivTsFJdDXpv5furWcOAAzztep7v3\no9FeV+mxWScw32heZb0RpPPAhkOJB7hFNQZwpUtcQgBYF0Ja0pYHHrmpZoAsk8T4\nSD+9Bv+84dKuy7YfLUYg1qmJ3s2X13r2+ZqXVbt6AQKBgQDdBN2UTSXpFot3fha1\n9lopIBGkBmwWUnafHuL1qjiPYMsfiBXMc6/1X7t+QNMDkCzZxIvUTXsoiCcrj2NI\n7zl82qlT0IJHoIh8ZpahpLzfKtXl4ap118DpEpSY+2W0g4psn4buHLOC6z9ssdIX\n+NLgghFKzmcWfE3Kcbvu/5r5MwKBgQDC1zmHivNJ4He9/5zHwDq1GXDms0Hs17G8\nYBUmrXmUxxFMHt5lbxoRvT9VHCme+ru1EBSl28JkN2BuJ+twEHQIX4R8jVrFQNx1\nShYQs3AVZ26pbCGAOxbEYFtKlon9D8GqY1nc4ON4j4giY9lVnLC75cA6T1cH792E\nowFPdPsTdwKBgAt+RUeA+4ezdG0yUVwFA4s/76rn6pb+ksyTfpnn0Ckkj2uEWB3Z\npjzMTaOzG0YEKVDpt5vCq7Tf36mUO0V/qy2i8Us6fIvc/Tv62bpuJqQ0Rgs+QO7/\n2ThFjxSlfhR1Aq3DXfDj7THRqeqtFI/KkKy8FsodEZ9Jt4HfiDZVdGmhAoGATM9k\nEpcoifs/uVtHh0e03SgGZixM1P3DR6vpKrJAt/IyU3vn2L0P3eZpTTgpAE+AKEUK\nnsgfvjpGfaanHiqeU560MBXZruF/B44JXNQgX4/DBG9oVZD1zLzfwGvQQj8v7ef0\nySqvAhwzYrtSNnnrAmf0fAhDGxHolh1cquJHCMkCgYEAm9iRG4Q8s7BwpP58IU3v\nLPWxyaamsqYzgEkSHDsTIfsq/X7wxfEXOCLmN29zn/KePq3IQ0rMsN64yiHgxjvV\nccOCQvi/tgF3x1NxmOeE2S7h7v/EdHvuEVe8NgJjOGXZViJg8ZyeoEidrM8lmkR3\no9NPGy3huuRFU7BnoP64f5w=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-uvd6m@ezactive-ezleague.iam.gserviceaccount.com",
+  "client_id": "118105689440645513238",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-uvd6m%40ezactive-ezleague.iam.gserviceaccount.com"
+}

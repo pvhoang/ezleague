@@ -1,0 +1,79 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+
+    <section id="fixtures-results">
+      <div class="row" *ngIf="seasons.length>0">
+        <div class="col-12">
+          <div class="row mb-1">
+            <div class="col-6 col-lg-3 mt-1">
+              <label class="form-label" for="season">{{ 'Season' | translate }}</label>
+              <ng-select placeholder="{{ 'Select Season' | translate }}" (change)="onSelectedSeason($event)"
+                [(ngModel)]="params.season_id" [clearable]="false">
+                <ng-option *ngFor="let season of seasons" [value]="season.id">
+                  {{ season.name }}
+                </ng-option>
+              </ng-select>
+            </div>
+            <div class="col-6 col-lg-3 mt-1">
+              <label class="form-label" for="group">{{ 'Group' | translate }}</label>
+              <ng-select placeholder="{{ 'Select Group' | translate }}" (change)="onSelectedGroup($event)"
+                [(ngModel)]="params.group_id" [clearable]="false">
+                <ng-option *ngFor="let group of groups" [value]="group.id">
+                  {{ group.name }}
+                </ng-option>
+              </ng-select>
+            </div>
+            <div class="col-6 col-lg-3 mt-1">
+              <label class="form-label" for="tournament">{{ 'Tournament' | translate }}</label>
+              <ng-select placeholder="{{ 'Select League' | translate }}" (change)="onSelectedTournament($event)"
+                [(ngModel)]="selectedTournament" [clearable]="false">
+                <ng-option *ngFor="let tournament of tournaments" [value]="tournament">
+                  {{ tournament.name }}
+                </ng-option>
+              </ng-select>
+            </div>
+            <div class="col-6 col-lg-3 mt-1">
+              <label class="form-label" for="team">{{ 'Team' | translate }}</label>
+              <ng-select placeholder="{{ 'Select Team' | translate }}" [(ngModel)]="teamFilter"
+                (change)="onSelectedTeam($event)">
+                <ng-option *ngFor="let team of teams" [value]="team.name">
+                  {{ team.name }}
+                </ng-option>
+              </ng-select>
+            </div>
+          </div>
+          <div class="card">
+            <ul ngbNav [(activeId)]="activeId" #nav="ngbNav" class="nav-tabs m-0">
+              <li ngbNavItem [ngbNavItem]="1">
+                <a ngbNavLink>
+                  {{'Fixtures' | translate}}
+                </a>
+                <ng-template ngbNavContent>
+                  <tab-fixtures type="fixtures" [matches]="matches.fixtures" [teamFilter]="teamFilter">
+                  </tab-fixtures>
+                </ng-template>
+              </li>
+              <li ngbNavItem [ngbNavItem]="2">
+                <a ngbNavLink>
+                  {{'Results' | translate}}
+                </a>
+                <ng-template ngbNavContent>
+                  <tab-fixtures type="results" [matches]="matches.results" [teamFilter]="teamFilter">
+                  </tab-fixtures>
+                </ng-template>
+              </li>
+              <li ngbNavItem [ngbNavItem]="3">
+                <a ngbNavLink>{{ 'Tables' | translate }}</a>
+                <ng-template ngbNavContent>
+                  <stage-tables [tableData]="tableData"></stage-tables>
+                </ng-template>
+              </li>
+            </ul>
+          </div>
+          <div [ngbNavOutlet]="nav" class="mt-2"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

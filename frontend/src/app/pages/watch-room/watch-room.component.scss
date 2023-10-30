@@ -1,0 +1,22 @@
+.team-score .score {
+    height: fit-content;
+    width: 20px;
+    text-align: center;
+    padding: 0px;
+    margin-left: 1em;
+}
+
+.card {
+    margin: 0;
+}
+
+.team-score {
+    font-family: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    margin: 5px;
+    position: absolute;
+    width: auto;
+    height: auto;
+    padding: 2px;
+    left: 0;
+    z-index: 1;
+}

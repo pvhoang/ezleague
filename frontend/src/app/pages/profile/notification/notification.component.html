@@ -1,0 +1,60 @@
+<div class="row">
+    <div class="col-lg-6 col-sm-12">
+        <div class="card" id="favourite_clubs">
+            <div class="card-header">
+                <div class="card-title">
+                    <h4 class="mb-0">{{'Favourite Clubs' | translate}}</h4>
+                </div>
+                <div>
+                    <button class="btn btn-primary btn-sm"
+                        (click)="openModalFollows({list: club_list,title: 'Favourite Clubs'},toggleFavouriteClub,updateFavClub)">
+                        {{'Follows'| translate}}
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="avatar-group" *ngIf="fav_clubs.length > 0">
+                    <div placement="bottom" container="body" ngbTooltip="{{fav_clubs[i]?.code}}" [openDelay]="50"
+                        [closeDelay]="200" class="avatar pull-up"
+                        *ngFor="let club of [].constructor(lenghtListDemo(fav_clubs).lengthShow); index as i">
+                        <img [src]="fav_clubs[i]?.logo" (error)="_commonsService.onloadImgErr($event)" alt="Avatar"
+                            width="33" height="33" />
+                    </div>
+                    <h6 class="align-self-center cursor-pointer ml-50 mb-0"
+                        *ngIf="lenghtListDemo(fav_clubs).lengthHide > 0">
+                        +{{lenghtListDemo(fav_clubs).lengthHide}}
+                    </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-sm-12">
+        <div class="card" id="favourite_teams">
+            <div class="card-header">
+                <div class="card-title">
+                    <h4 class="mb-0">{{'Favourite Teams' | translate}}</h4>
+                </div>
+                <div>
+                    <button class="btn btn-primary btn-sm"
+                        (click)="openModalFollows({list: team_list,title: 'Favourite Teams',selects:team_selects},toggleFavouriteTeam,updateFavTeam)">
+                        {{'Follows' | translate}}
+                    </button>
+                </div>
+            </div>
+            <div class=" card-body">
+                <div class="avatar-group" *ngIf="fav_teams.length > 0">
+                    <div placement="bottom" container="body" ngbTooltip="{{fav_teams[i]?.name}}" [openDelay]="50"
+                        [closeDelay]="200" class="avatar pull-up"
+                        *ngFor="let club of [].constructor(lenghtListDemo(fav_teams).lengthShow); index as i">
+                        <img [src]="fav_teams[i]?.logo" (error)="_commonsService.onloadImgErr($event)" alt="Avatar"
+                            width="33" height="33" />
+                    </div>
+                    <h6 class="align-self-center cursor-pointer ml-50 mb-0"
+                        *ngIf="lenghtListDemo(fav_teams).lengthHide > 0">
+                        +{{lenghtListDemo(fav_teams).lengthHide}}
+                    </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+<div>
+    <div class="row">
+        <div class="col-12 col-lg-6" *ngFor="let group of tableData">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">{{group.name}}</h4>
+                </div>
+                <div class="card-body">
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Logo</th>
+                                <th>Team</th>
+                                <th>P</th>
+                                <th class="d-none d-sm-table-cell">W</th>
+                                <th class="d-none d-sm-table-cell">D</th>
+                                <th class="d-none d-sm-table-cell">L</th>
+                                <th>F</th>
+                                <th>A</th>
+                                <th>Pts</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let stageTeam of group.teams; index as i">
+                                <td>{{ i + 1 }}</td>
+                                <td><img [src]="stageTeam.team.club.logo" alt="logo" width="30" height="30"></td>
+                                <td class="font-weight-bold">{{stageTeam.team.name}}</td>
+                                <td>{{stageTeam.no_matches}}</td>
+                                <td class="d-none d-sm-table-cell">{{stageTeam.no_wins}}</td>
+                                <td class="d-none d-sm-table-cell">{{stageTeam.no_draws}}</td>
+                                <td class="d-none d-sm-table-cell">{{stageTeam.no_losses}}</td>
+                                <td>{{stageTeam.goals_for}}</td>
+                                <td>{{stageTeam.goals_against}}</td>
+                                <td class="font-weight-bold">{{stageTeam.points}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

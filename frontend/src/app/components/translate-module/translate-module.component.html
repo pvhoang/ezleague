@@ -1,0 +1,24 @@
+<!-- Modal -->
+<!-- <img id="img-lang" (click)="modalOpen(modalBasic)" src="assets/images/icons/lang_cn.svg" /> -->
+<div id="button-change-lang" (click)="modalOpen(modalBasic)">
+    <img src="assets/images/icons/world.svg"/>
+    <h5 class="name-lang">{{currrentLanguage.shortname}}</h5>
+</div>
+<ng-template #modalBasic let-modal>
+    <div class="btn-lang modal-body" tabindex="0" ngbAutofocus>
+        <h3>Choose language</h3>
+        
+        <div *ngFor="let item of languages" [ngClass]="item.code == languageSelected.code ? 'option-block-active' : 'option-block'" (click)="changeLanguage(item)">
+            <h5>{{item.name}}</h5>
+        </div>
+        <!-- <div class="option-block">
+            <h5>English</h5>
+        </div> -->
+        <div class="buttons-block">
+            <!-- create 2 button -->
+            <button type="button" class="btn" (click)="dismissModal()">Close</button>
+            <button type="button" class="btn btn-primary" (click)="saveLanguage()">Submit</button>
+        </div>
+    </div>
+</ng-template>
+<!-- / Modal -->

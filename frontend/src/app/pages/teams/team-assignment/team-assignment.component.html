@@ -1,0 +1,29 @@
+<div class="content-wrapper container-xxl p-0">
+    <div class="content-body">
+        <app-content-header [contentHeader]="contentHeader"></app-content-header>
+
+        <section id="team-assignment-page">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <ul ngbNav #nav="ngbNav" class="nav-tabs m-0">
+                            <li ngbNavItem *ngIf="permissions.assign_player">
+                                <a ngbNavLink>{{ 'Players' | translate }}</a>
+                                <ng-template ngbNavContent>
+                                    <app-assign-players [team]="team"></app-assign-players>
+                                </ng-template>
+                            </li>
+                            <li ngbNavItem *ngIf="permissions.assign_coach">
+                                <a href="javascript:void(0)" ngbNavLink>{{ 'Coaches' | translate }}</a>
+                                <ng-template ngbNavContent>
+                                    <app-assign-coaches [team]="team"></app-assign-coaches>
+                                </ng-template>
+                            </li>
+                        </ul>
+                    </div>
+                    <div [ngbNavOutlet]="nav" class="mt-2"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+@import '@core/scss/base/colors';
+
+.modal-header {
+    align-items: center;
+    justify-content: left;
+    position: relative;
+
+    i {
+        color: $primary;
+    }
+}

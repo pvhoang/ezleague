@@ -1,0 +1,26 @@
+<div class="content-wrapper container-xxl p-0">
+    <div class="content-body">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title"></h4>
+                <div class="d-flex flex-row btn_group mt-1">
+                    <button type="button" class="btn btn-outline-primary btn-sm" (click)="assignCoachToTeam()">
+                        <i class="fa fa-user-plus"></i>
+                        {{ 'Assign Coach' | translate }}
+                    </button>
+                </div>
+            </div>
+
+            <table datatable [dtOptions]="dtOptions" class="table border row-border hover">
+                <thead>
+                    <tr>
+                        <th class="text-capitalize">{{ 'Coach Name' | translate }}</th>
+                        <th class="text-capitalize">{{ 'Email' | translate }}</th>
+                        <th class="text-capitalize">{{ 'Phone' | translate }}</th>
+                        <th class="text-capitalize">{{ 'Action' | translate }}</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="modal-header bg-white">
+    <h4 class="modal-title" id="label_follows">
+        {{ 'Two Factor Authentication' | translate }}
+    </h4>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<form>
+    <div class="modal-body" tabindex="0" ngbAutofocus>
+        <div class="form-group">
+            <input type="text" class="form-control" id="code" name="code" [(ngModel)]="code"
+                placeholder="{{'Enter authentication code' | translate}}"
+                [ngClass]="{ 'is-invalid error': submitted && err_message  && !code }" required>
+            <div *ngIf="submitted && err_message && !code" class="invalid-feedback"
+                [ngClass]="{ 'd-block': submitted && err_message }">
+                {{err_message}}
+            </div>
+        </div>
+        <!-- you can't get the code? -->
+        <div class="form-group">
+            <a href="javascript:void(0)" (click)="resetCode()">
+                {{"You can't get the code?" | translate}}
+            </a>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" (click)="verifyCode()">{{'Submit' | translate}}</button>
+    </div>
+</form>

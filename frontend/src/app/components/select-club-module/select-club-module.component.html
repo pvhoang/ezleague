@@ -1,0 +1,52 @@
+<!-- modal select club when click -->
+<div data-testid="btnRegisterNow" type="button" class="btn btn-block btn-primary" rippleEffect
+    (click)="modalOpenForm(modalDefaultClub)">
+    {{ 'REGISTER NOW' | translate }}
+</div>
+
+<!-- Modal -->
+<ng-template #modalDefaultClub let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel1">{{'Registration'|translate}}</h4>
+    </div>
+    <div class="modal-body" tabindex="0" ngbAutofocus>
+        <div class="form-group">
+            <h1>{{ selectedClub }}</h1>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button data-testid="btnChangeClub" type="button" class="btn btn-outline-secondary"
+            (click)="modal.close(modalSelectClub)" rippleEffect>
+            {{'Change Club'|translate}}
+        </button>
+        <button data-testid="btnSubmitRenew" type="button" class="btn btn-primary"
+            (click)="modal.dismiss('Accept click')" rippleEffect>
+            {{'Submit'|translate}}
+        </button>
+    </div>
+</ng-template>
+<!-- / Modal -->
+
+<!-- Modal select club -->
+<ng-template #modalSelectClub let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel1">{{'Select Club'|translate}}</h4>
+    </div>
+    <div class="modal-body" tabindex="0" ngbAutofocus>
+        <div class="form-group">
+            <select id="btnClub" class="form-control" [(ngModel)]="selectedClubId">
+                <option value="0">{{'Select Club'|translate}}</option>
+                <option *ngFor="let club of clubs" [value]="club.id">{{ club.name }}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('ChangeClub')" rippleEffect>
+            {{'Cancel'|translate}}
+        </button>
+        <button type="button" class="btn btn-primary" (click)="modal.close('Accept click')" rippleEffect>
+            {{'Submit'|translate}}
+        </button>
+    </div>
+</ng-template>
+<!-- /Modal select club  -->

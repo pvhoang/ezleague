@@ -1,0 +1,8 @@
+<div class="{{dataTestId}}">
+    <ng-container *ngFor="let error of errors| keyvalue">
+        <div>{{errMessage(error)}}</div>
+    </ng-container>
+    <div *ngIf="errors.serverError">
+        {{errors.serverError}}
+    </div>
+</div>

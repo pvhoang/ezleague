@@ -1,0 +1,17 @@
+
+<app-content-header [contentHeader]="contentHeader"></app-content-header>
+<div class="card mb-25">
+    <ul ngbNav #navWithIcons="ngbNav" class="nav-tabs m-0">
+        <li ngbNavItem (click)="tabClick('email')">
+            <a ngbNavLink><i class="fa-regular fa-envelope"></i>{{'Email'|translate}}</a>
+        </li>
+        <li ngbNavItem (click)="tabClick('push_noti')">
+            <a ngbNavLink><i class="fa-regular fa-bell"></i>{{'App'|translate}}</a>
+        </li>
+    </ul>
+</div>
+
+<div class="card">
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="table row-border hover">
+    </table>
+</div>

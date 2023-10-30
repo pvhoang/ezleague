@@ -1,0 +1,101 @@
+<div class="auth-wrapper auth-v2">
+  <app-translate-module></app-translate-module>
+  <div class="auth-inner row m-0">
+    <!-- Brand logo-->
+    <div class=" d-none d-lg-block d-xl-block">
+      <a class="brand-logo" href="javascript:void(0);">
+        <img src="{{ coreConfig.app.appLogoImage }}" alt="brand-logo" height="28" />
+        <h2 class="brand-text text-primary ml-1">{{ coreConfig.app.appName }}</h2>
+      </a>
+    </div>
+    <!-- /Brand logo-->
+    <!-- Left Text-->
+    <div class="d-none d-lg-flex col-lg-8 align-items-center p-5">
+      <div class="w-100 d-lg-flex align-items-center justify-content-center px-5">
+        <!-- <img class="img-fluid" [src]="
+              coreConfig.layout.skin === 'dark'
+                ? 'assets/images/pages/login-v2-dark.svg'
+                : 'assets/images/pages/login-v2.svg'
+            " alt="Login V2" /> -->
+        <img class="img-fluid" src="assets/images/backgrounds/background_1.png" alt="Login V2" />
+      </div>
+    </div>
+    <!-- /Left Text-->
+    <!-- Login-->
+    <div class="col-lg-4 auth-bg m-0 p-0 auth-form">
+      <div class="card">
+        <div class="row  m-0 p-0">
+          <div class="col m-0 p-0">
+            <div class="container-background-form  d-lg-none d-xl-none"
+              style="background-image: url(assets/images/backgrounds/background_1.png);">
+            </div>
+          </div>
+        </div>
+        <div class="row m-0 p-0 form-w-background">
+          <div class="col">
+            <div class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-2 mx-auto">
+              <h2 class="card-title text-center font-weight-bold mb-1">{{'Welcome to' | translate}} EZ League!
+              </h2>
+              <p class="text-center sub-title">{{'Sign in to your account' | translate}}</p>
+              <ngb-alert [type]="'danger'" [dismissible]="false" *ngIf="error">
+                <div class="alert-body">
+                  <p data-testid="errGeneral">{{ error }}</p>
+                </div>
+              </ngb-alert>
+
+              <form class="auth-login-form mt-2" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                  <input data-testid="txtEmail" type="email" formControlName="email"
+                    placeholder="{{'Email' | translate}}" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted && f.email.errors }" aria-describedby="login-email" autofocus
+                    tabindex="1" />
+                  <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                    <app-error-message [errors]="f.email.errors" field="email"
+                      dataTestId="errEmail"></app-error-message>
+                  </div>
+                </div>
+                <div class="form-group">
+
+                  <div class="input-group input-group-merge form-password-toggle">
+                    <input data-testid="txtPassword" [type]="passwordTextType ? 'text' : 'password'"
+                      formControlName="password" placeholder="{{'Password' | translate}}"
+                      class="form-control form-control-merge"
+                      [ngClass]="{ 'is-invalid error': submitted && f.password.errors }"
+                      aria-describedby="login-password" tabindex="2" />
+                    <div class="input-group-append">
+                      <span class="input-group-text cursor-pointer"><i class="feather font-small-4"
+                          [ngClass]="{ 'icon-eye-off': passwordTextType, 'icon-eye': !passwordTextType }"
+                          (click)="togglePasswordTextType()"></i></span>
+                    </div>
+                  </div>
+                  <div *ngIf="submitted && f.password.errors" class="invalid-feedback"
+                    [ngClass]="{ 'd-block': submitted && f.password.errors }">
+                    <app-error-message [errors]="f.password.errors" field="password"
+                      dataTestId="errPassword"></app-error-message>
+                  </div>
+                </div>
+                <button data-testid="btnLogin" [disabled]="_loadingService.buttonLoading"
+                  class="btn btn-gradient-primary round-15 btn-block" tabindex="4" rippleEffect>
+                  <span *ngIf="_loadingService.buttonLoading"
+                    class="spinner-border spinner-border-sm mr-1"></span>{{'Login' | translate}}
+                </button>
+              </form>
+              <button data-testid="btnContinueAsGuest" [disabled]="_loadingService.buttonLoading" class="btn btn-outline-primary round-15 btn-block mt-1"
+                tabindex="4" rippleEffect (click)="onClickContinueAsGuest()">
+                <span class="mr-1"></span>{{'Continue as Guest' | translate}}
+              </button>
+              <p class="mt-2 d-flex justify-content-between">
+                <a data-testid="Forgotpassword" routerLink="/auth/forgot-password">
+                  <span>{{'Forgot Password' | translate}}</span>
+                </a>
+                <a routerLink="/auth/register" data-testid="btnSignup"><span>&nbsp;{{'Create Account' |
+                    translate}}</span></a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Login-->
+  </div>
+</div>

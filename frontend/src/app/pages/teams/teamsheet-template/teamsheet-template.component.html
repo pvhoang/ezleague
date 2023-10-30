@@ -1,0 +1,124 @@
+<!-- <button (click)="submitTeamSheet()"></button> -->
+<div style="display: none">
+  <div class="modal-header">
+    <h4 class="modal-title" id="myModalLabel1">Preview Team Sheet</h4>
+    <button type="button" class="close" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" tabindex="0" ngbAutofocus>
+    <div class="row justify-content-center">
+      <div id="team-sheet">
+        <!DOCTYPE html>
+        <html lang="en">
+          <head>
+            <meta
+              http-equiv="Content-Type"
+              content="text/html; charset=utf-8"
+            />
+            <meta charset="utf-8" />
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1.0"
+            />
+            <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+            <title>Team Sheet</title>
+          </head>
+
+          <body>
+            <div style="width: 425px">
+              <table
+                style="
+                  width: 425px;
+                  border: 0;
+                  font-family: Arial;
+                  color: black !important;
+                "
+              >
+                <br />
+                <tbody style="font-size: 12px">
+                  <tr>
+                    <td class="p-0">
+                      <img
+                        src="assets/images/logo/ezactive_1024x1024.png"
+                        width="50px"
+                      />
+                    </td>
+                    <td
+                      class="p-0"
+                      style="width: 150px; vertical-align: middle"
+                    >
+                      <div class="text-left">
+                        <strong style="font-weight: 700"
+                          >{{ APP_NAME }} - {{ season?.name }}</strong
+                        >
+                        <br />
+                        Submitted: {{ today | date : 'yyyy-MMM-dd' }}
+                      </div>
+                    </td>
+                    <td class="p-0">
+                      <div class="text-left">
+                        <strong>Club:</strong> {{ currentTeam?.club?.name }}
+                        <br />
+                        <strong>Group:</strong> {{ currentTeam?.group?.name }}
+                        <br />
+                        <strong>Team:</strong> {{ currentTeam?.name }}
+                      </div>
+                    </td>
+                    <td class="p-0">
+                      <img
+                        id="club_logo"
+                        width="50px"
+                        [src]="replaceImageURL(currentTeam?.club?.logo)"
+                      />
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <hr />
+
+              <!-- <h2 class="text-center mb-3"></h2> -->
+
+              <table class="table table-bordered" style="width: 425px">
+                <tbody>
+                  <tr *ngFor="let items of team_player">
+                    <td
+                      class="p-0"
+                      *ngFor="let item of items"
+                      style="font-size: 10px; width: 106px"
+                    >
+                      <div class="text-center">
+                        <img
+                          class="mt-1"
+                          style="margin: 0 auto"
+                          [id]="'photo_' + item.player.id"
+                          width="80px"
+                          height="80px"
+                          object-fit="cover"
+                          [src]="replaceImageURL(item.player.photo)"
+                        />
+                        <div
+                          class="text-center"
+                          style="
+                            font-size: 10px;
+                            padding: 2px;
+                            font-family: SimSun;
+                          "
+                        >
+                          {{ item.player.user.first_name }}
+                          {{ item.player.user.last_name }}
+                          <br />
+                          {{ item.player.dob | date : 'yyyy' }}
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </body>
+        </html>
+      </div>
+    </div>
+  </div>
+</div>

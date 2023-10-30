@@ -1,0 +1,54 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="myModalLabel1">Payment</h4>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<form [formGroup]="form" (ngSubmit)="onSubmit(model,stripeCard)">
+    <div class="modal-body" tabindex="0" ngbAutofocus>
+        <h4>{{'Details' | translate}}</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <td class="pl-25 pr-25 text-left" style="max-width: 80%">{{'Name'|translate}}</td>
+                    <td class="pl-25 pr-25 text-center" style="max-width: 10%">{{'Quantity'|translate}}</td>
+                    <td class="pl-25 pr-25 text-center" style="max-width: 10%">{{'Price'|translate}}</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of products">
+                    <td class="p-25 text-left" style="max-width: 80%">{{item.name}}</td>
+                    <td class="p-25 text-center" style="max-width: 10%">{{item.quantity}}</td>
+                    <td class="p-25 text-center" style="max-width: 10%">${{item.price}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <hr>
+        <div class="row mb-1">
+            <div class="col">
+                <h5>{{'Total' | translate}}:</h5>
+            </div>
+            <div class="col-3">
+                <h5 class="text-right">${{amount}}</h5>
+            </div>
+        </div>
+        <h4 class="mb-1">{{'Payment information' | translate}}</h4>
+        <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+        <div class="form-group">
+            <stripe-card #stripeCard (catch)="onStripeError($event)" [(complete)]="cardDetailsFilledOut"
+                [(invalid)]="invalidError" (cardMounted)="cardCaptureReady = true"
+                (paymentMethodChange)="setPaymentMethod($event)" (tokenChange)="setStripeToken($event)"
+                (sourceChange)="setStripeSource($event)"></stripe-card>
+            <div *ngIf="invalidError" style="color:red">
+                {{ invalidError.message }}
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-success" [disabled]="!enableSubmit">
+            Pay Now
+        </button>
+        <!-- <button type="button" class="btn btn-success" (click)="stripeCard.createSource(extraData)">Create Source</button>
+    <button type="button" class="btn btn-success" (click)="stripeCard.createToken(extraData)">Create Token</button> -->
+    </div>
+</form>

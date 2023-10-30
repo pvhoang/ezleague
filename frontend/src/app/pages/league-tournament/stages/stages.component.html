@@ -1,0 +1,50 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+
+    <section id="stage-page" *ngIf="current_Stage">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <ul ngbNav #nav="ngbNav" class="nav-tabs m-0">
+              <li ngbNavItem>
+                <a ngbNavLink>{{ 'Details' | translate }}</a>
+                <ng-template ngbNavContent>
+                  <stage-details [stage]="current_Stage"> </stage-details>
+                </ng-template>
+              </li>
+              <li ngbNavItem>
+                <a ngbNavLink>{{ 'Teams' | translate }}</a>
+                <ng-template ngbNavContent>
+                  <stage-teams
+                    [stage]="current_Stage"
+                    [tournament]="current_Tournament"
+                    [group_stages]="group_stages"
+                    [allowEditTeam]="allowEditTeam"
+                    (onDataChange)="onTeamChange($event)"
+                  >
+                  </stage-teams>
+                </ng-template>
+              </li>
+              <li ngbNavItem>
+                <a ngbNavLink>{{ 'Matches' | translate }}</a>
+                <ng-template ngbNavContent>
+                  <app-stage-matches [stage]="current_Stage" (onDataChange)="onDataChange($event)" (onDataChange)="onMatchTableChange($event)"></app-stage-matches>
+                </ng-template>
+              </li>
+              <li ngbNavItem *ngIf="current_Stage.type != 'Knockout'">
+                <a href="javascript:void(0)" ngbNavLink>{{
+                  'Tables' | translate
+                }}</a>
+                <ng-template ngbNavContent>
+                  <stage-tables [stage]="current_Stage" [tableData]="tableData"></stage-tables>
+                </ng-template>
+              </li>
+            </ul>
+          </div>
+          <div [ngbNavOutlet]="nav" class="mt-2"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

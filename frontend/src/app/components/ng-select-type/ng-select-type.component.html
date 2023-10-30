@@ -1,0 +1,6 @@
+<ng-select [clearable]="to.clearable" [searchable]="to.searchable" [formControl]="formControl" [multiple]="to.multiple"
+  [maxSelectedItems]="to.maxSelectedItems" [hideSelected]="to.hideSelected" [closeOnSelect]="to.closeOnSelect? true : false" [placeholder]="to.placeholder">
+  <ng-option *ngFor="let item of to.options" [value]="item.value">
+    {{item.label}}
+  </ng-option>
+</ng-select>

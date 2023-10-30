@@ -1,0 +1,16 @@
+@import '@core/scss/base/bootstrap-extended/include'; // Bootstrap includes
+@import '@core/scss/base/pages/page-auth.scss';
+
+.brand-mobile{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+    font-size: 20px;
+}
+.brand-mobile h2{
+    display: inline-block;
+    font-weight: 600;
+}
+.brand-mobile img{
+    margin-bottom: 10px;
+}

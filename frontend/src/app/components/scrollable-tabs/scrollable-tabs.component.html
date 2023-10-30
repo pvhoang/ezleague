@@ -1,0 +1,22 @@
+<section class="tabs-container" id="tabs-container">
+  <!-- <span class="change-btn prev" (click)="scrollTab(-1)" [class.hide]="atStart">
+    &lsaquo;</span
+  > -->
+  <div class="">
+    <ul class="tabs p-0 m-0">
+      <ng-container *ngFor="let tab of tabs; let i = index">
+        <li
+          id="tab-{{ i }}"
+          class="tab"
+          [class.active]="selectedIndex === i"
+          (click)="selectTab(i)"
+        >
+          {{ tab.label }}
+        </li>
+      </ng-container>
+    </ul>
+    <!-- <span class="change-btn next" [class.hide]="atEnd" (click)="scrollTab(1)"
+    >&rsaquo;</span
+  > -->
+  </div>
+</section>

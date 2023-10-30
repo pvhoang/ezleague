@@ -1,0 +1,49 @@
+<div class="modal-header bg-white">
+    <h4 class="modal-title" id="label_follows">
+        {{'Notification' | translate}} {{ data?.title | translate }}
+    </h4>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="modal-body" style="height: 70vh;" tabindex="0" ngbAutofocus>
+    <div class="row">
+        <div class="col mb-1" *ngFor="let select of data.selects">
+            <ng-select [placeholder]="select.placeholder" [clearable]="false" [(ngModel)]="select.filter"
+                (change)="onSelected($event,select)">
+                <ng-option *ngFor="let item of select.options" [value]="item.id">
+                    {{item.name}}
+                </ng-option>
+            </ng-select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="search">{{'Search'| translate }}</label>
+        <input type="text" class="form-control" name="search" id="search" placeholder="{{'Search'| translate }}"
+            [(ngModel)]="search">
+    </div>
+    <ul class="list-group">
+        <ng-container *ngFor="let item of filteredItems | filter:search">
+            <li class="list-group-item border-0" *ngIf="!item.message">
+                <div class="row ">
+                    <div class="col-auto p-0">
+                        <img height="32" width="32" alt="datatable-avatar" class="rounded-circle mr-1" [src]="item.logo"
+                            (error)="_commonsService.onloadImgErr($event)">
+                    </div>
+                    <div class="col text-left">
+                        {{item.name}}
+                    </div>
+                    <div class="col-auto p-0">
+                        <div class="custom-control custom-control-primary custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="switch_{{item.id}}"
+                                [checked]="item.isFollow" (change)="changeFollow(item)">
+                            <label class="custom-control-label" for="switch_{{item.id}}"></label>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ng-container>
+    </ul>
+
+</div>
