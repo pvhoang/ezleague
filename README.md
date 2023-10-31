@@ -32,6 +32,7 @@
 run view
 run prune
 run build all/backend/nginx/frontend
+run upload all
 run start
 
 # migrate data for backend
@@ -125,7 +126,9 @@ composer install --ignore-platform-reqs
 ==============================
 # ====== DEPLOY PROJECT ======
 ==============================
-
+ssh -i "ezleague.pem" ec2-user@ec2-52-62-18-8.ap-southeast-2.compute.amazonaws.com
+[ec2-user@ip-172-31-3-81 ~]$
+cd ezleague
 git pull
 bash run.sh download
 bash run.sh start
