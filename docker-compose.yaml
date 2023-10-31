@@ -3,7 +3,8 @@ version: "3.8"
 services: 
 
   nginx:
-    image: ezleague-nginx
+    image: ezleague_nginx
+    container_name: ezleague_nginx_1
     build: 
       context: nginx
       dockerfile: ../dockerfiles/nginx.dockerfile
@@ -17,15 +18,18 @@ services:
       - mysql
   
   backend:
-    image: ezleague-backend
+    image: ezleague_backend
+    container_name: ezleague_backend_1
     build:
       context: backend
       dockerfile: ../dockerfiles/backend.dockerfile
     volumes: 
       - ./backend:/var/www/html:delegated
+      - ./backend/vendor:/var/www/html/vendor
 
   frontend:
-    image: ezleague-frontend
+    image: ezleague_frontend
+    container_name: ezleague_frontend_1
     build:
       context: frontend
       dockerfile: ../dockerfiles/frontend.dockerfile
@@ -37,6 +41,7 @@ services:
 
   mysql:
     image: mysql:5.7
+    container_name: ezleague_mysql_1
     environment:
       MYSQL_DATABASE: homestead
       MYSQL_USER: homestead
@@ -49,6 +54,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
+    container_name: ezleague_phpmyadmin_1
     environment:
       PMA_ARBITRARY: 1
       PMA_USER: homestead

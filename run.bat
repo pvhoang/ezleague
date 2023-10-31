@@ -6,7 +6,8 @@ if "%1%"=="prune" goto prune
 if "%1%"=="build" goto build
 if "%1%"=="upload" goto upload
 if "%1%"=="deploy" goto deploy
-if "%1%"=="exec" goto exec
+if "%1%"=="start" goto start
+if "%1%"=="stop" goto stop
 
 echo.
 echo Params: %1% - %2%
@@ -17,21 +18,26 @@ echo - prune: prune all containers and images
 echo - build - all/backend/nginx/frontend: build images
 echo - upload - all/backend/nginx/frontend: upload images to DockerHub
 echo - deploy - backend/frontend: rebuild image and deploy
-echo - exec: exec with available images
+echo - start: start containers
+echo - stop: stop containers
 echo.
 goto exit0
 
-@REM --- exec ---
-:exec
+@REM --- start ---
+:start
 echo.
-echo Exec container with available images
+echo Start containers
 echo.
 docker-compose down
-@REM docker-compose -f docker-compose-run.yaml up -d
-@REM docker-compose --env-file ./config/.env.ec2 up -d
-@REM docker-compose --env-file ./config/.env.local up --no-build -d
-docker-compose up --no-build -d
-@REM docker-compose config
+docker-compose up --no-build -d nginx backend frontend mysql phpmyadmin
+goto exit0
+
+@REM --- stop ---
+:stop
+echo.
+echo Stop containers
+echo.
+docker-compose down
 goto exit0
 
 @REM --- view ---
@@ -60,10 +66,10 @@ goto exit0
 echo.
 echo Log containers
 echo.
-docker logs ezleague-nginx-1 
-docker logs ezleague-frontend-1
-docker logs ezleague-backend-1
-docker logs ezleague-mysql-1
+docker logs ezleague_nginx_1 
+docker logs ezleague_frontend_1
+docker logs ezleague_backend_1
+docker logs ezleague_mysql_1
 goto exit0
 
 @REM --- build ---
@@ -87,19 +93,20 @@ docker-compose build backend nginx frontend
 goto exit0
 :bbackend
 echo.
-echo Build image: ezleague-backend
+echo Build image: ezleague_backend
 echo.
 docker-compose build backend
+pause
 goto exit0
 :bnginx
 echo.
-echo Build image: ezleague-nginx
+echo Build image: ezleague_nginx
 echo.
 docker-compose build nginx
 goto exit0
 :bfrontend
 echo.
-echo Build image: ezleague-frontend
+echo Build image: ezleague_frontend
 echo.
 docker-compose build frontend
 goto exit0
@@ -122,38 +129,38 @@ echo.
 echo Upload all images
 echo.
 docker login
-docker tag ezleague-backend hoang12345/ezleague-backend
-docker push hoang12345/ezleague-backend
+docker tag ezleague_backend hoang12345/ezleague_backend
+docker push hoang12345/ezleague_backend
 pause
-docker tag ezleague-nginx hoang12345/ezleague-nginx
-docker push hoang12345/ezleague-nginx
+docker tag ezleague_nginx hoang12345/ezleague_nginx
+docker push hoang12345/ezleague_nginx
 pause
-docker tag ezleague-frontend hoang12345/ezleague-frontend
-docker push hoang12345/ezleague-frontend
+docker tag ezleague_frontend hoang12345/ezleague_frontend
+docker push hoang12345/ezleague_frontend
 goto exit0
 :uBackend
 echo.
-echo Upload ezleague-backend
+echo Upload ezleague_backend
 echo.
 docker login
-docker tag ezleague-backend hoang12345/ezleague-backend
-docker push hoang12345/ezleague-backend
+docker tag ezleague_backend hoang12345/ezleague_backend
+docker push hoang12345/ezleague_backend
 goto exit0
 :uNginx
 echo.
-echo Upload ezleague-nginx
+echo Upload ezleague_nginx
 echo.
 docker login
-docker tag ezleague-nginx hoang12345/ezleague-nginx
-docker push hoang12345/ezleague-nginx
+docker tag ezleague_nginx hoang12345/ezleague_nginx
+docker push hoang12345/ezleague_nginx
 goto exit0
 :uFrontend
 echo.
-echo Upload ezleague-frontend
+echo Upload ezleague_frontend
 echo.
 docker login
-docker tag ezleague-frontend hoang12345/ezleague-frontend
-docker push hoang12345/ezleague-frontend
+docker tag ezleague_frontend hoang12345/ezleague_frontend
+docker push hoang12345/ezleague_frontend
 goto exit0
 
 @REM --- deploy ---
@@ -171,7 +178,7 @@ goto exit0
 
 :rdBackend
 echo.
-echo Redeploy ezleague-backend
+echo Redeploy ezleague_backend
 echo.
 @REM docker-compose down backend
 @REM docker-compose up -d --build backend
