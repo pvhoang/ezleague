@@ -32,12 +32,12 @@ case $1 in
         echo .
         echo Download images from DockerHub
         echo .
-            docker pull hoang12345/eztest_backend
-            docker tag hoang12345/eztest_backend eztest_backend
-            docker pull hoang12345/eztest_frontend
-            docker tag hoang12345/eztest_frontend eztest_frontend
-            docker pull hoang12345/eztest_nginx
-            docker tag hoang12345/eztest_nginx eztest_nginx
+            docker pull hoang12345/ezleague_backend
+            docker tag hoang12345/ezleague_backend ezleague_backend
+            docker pull hoang12345/ezleague_frontend
+            docker tag hoang12345/ezleague_frontend ezleague_frontend
+            docker pull hoang12345/ezleague_nginx
+            docker tag hoang12345/ezleague_nginx ezleague_nginx
         ;;
 
     *)
