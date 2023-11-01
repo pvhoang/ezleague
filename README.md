@@ -121,11 +121,18 @@ docker ps
 git clone https://github.com/pvhoang/ezleague.git
 cd ezleague/backend
 # . create backend/vendor
+<!-- sudo composer install -->
 composer install --ignore-platform-reqs
+<!-- composer update -->
+<!-- composer install --ignore-platform-req=ext-sodium --ignore-platform-req=ext-bcmath
+composer install --ignore-platform-req=ext-sodium
+composer install --ignore-platform-req=ext-bcmath -->
 
 ==============================
 # ====== DEPLOY PROJECT ======
 ==============================
+[D:\dev\aws\ezleague]
+run upload backend
 ssh -i "ezleague.pem" ec2-user@ec2-52-62-18-8.ap-southeast-2.compute.amazonaws.com
 [ec2-user@ip-172-31-3-81 ~]$
 cd ezleague

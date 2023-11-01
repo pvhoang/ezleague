@@ -28,7 +28,7 @@ case $1 in
         docker images
         ;;
 
-    download)
+    download-all)
         echo .
         echo Download images from DockerHub
         echo .
@@ -40,6 +40,29 @@ case $1 in
             docker tag hoang12345/ezleague_nginx ezleague_nginx
         ;;
 
+    download-backend)
+        echo .
+        echo Download backend from DockerHub
+        echo .
+            docker pull hoang12345/ezleague_backend
+            docker tag hoang12345/ezleague_backend ezleague_backend
+        ;;
+
+    download-frontend)
+        echo .
+        echo Download frontend from DockerHub
+        echo .
+            docker pull hoang12345/ezleague_frontend
+            docker tag hoang12345/ezleague_frontend ezleague_frontend
+        ;;
+
+    download-nginx)
+        echo .
+        echo Download nginx from DockerHub
+        echo .
+            docker pull hoang12345/ezleague_nginx
+            docker tag hoang12345/ezleague_nginx ezleague_nginx
+        ;;
     *)
         echo don\'t know
     ;;
